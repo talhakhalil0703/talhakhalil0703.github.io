@@ -20,7 +20,7 @@ ul{
 
 .button_1{
   height: 38px;
-  background: #99e7ea;
+  background: #14ffec;
   border: none;
   padding-left: 20px;
   padding-right: 20px;
@@ -29,7 +29,7 @@ ul{
 
 .dark{
   padding: 15px;
-  background: #35424a;
+  background: #212121;
   color: #ffffff;
   margin-top: 10px;
   margin-bottom: 10px;
@@ -37,11 +37,11 @@ ul{
 
 /*Header*/
 header{
-  background: #35424a;
+  background: #212121;
   color:#ffffff;
   padding-top: 30px;
   min-height: 70px;
-  border-bottom:#99e7ea 3px solid;
+  border-bottom:#14ffec 3px solid;
 }
 
 header a{
@@ -71,7 +71,7 @@ header nav{
 }
 
 header .highlight, header .current a{
-  color: #99e7ea;
+  color: #14ffec;
   font-weight: bold;
 }
 
@@ -103,7 +103,7 @@ header a:hover{
   display: none;
   padding: 15px;
   color: #ffffff;
-  background: #35424a;
+  background: #212121;
 }
 
 #newsletter h1{
@@ -159,13 +159,21 @@ article#main-col{
   margin: auto;
 }
 
+article#main-col a{
+  text-align: center;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+
 /*courses*/
 ul#courses li{
+  color: #000000;
   list-style: none;
   padding: 20px;
-  border: #cccccc solid 1px;
+  border: none;
   margin-bottom: 5px;
-  background: #e6e6e6;
+  background: #E1FAF4;
 }
 
 /*footer*/
@@ -173,7 +181,7 @@ footer{
   padding: 3px;
   margin-top: 10px;
   color: #ffffff;
-  background-color: #99e7ea;
+  background-color: #14ffec;
   text-align: center;
 }
 
