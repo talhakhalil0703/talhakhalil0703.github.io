@@ -1,2 +1,2 @@
-# talhakhalil0703.github.io
+# talhakhalil.ca
 Personal Website
