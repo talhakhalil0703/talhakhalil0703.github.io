@@ -80,6 +80,34 @@ header a:hover{
   font-weight: bold;
 }
 
+/* Navigation Bar*/
+.topnav
+{
+  background-color: #212121;
+  overflow: hidden;
+}
+
+.topnav a
+{
+  float: right;
+  color: #f2f2f2;
+  text-align: center;
+  padding: 14px 16px;
+  text-decoration: none;
+  font-size: inherit;
+}
+
+.topnav a:hover
+{
+  background-color: #ddd;
+  color: black;
+}
+
+.topnav a.active {
+  background-color: #14ffec;
+  color: white;
+}
+
 /*Showcase */
 #showcase{
   min-height:  400px;
