@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Communication Protocols (I2C, SPI, UART, CAN) — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Communication Protocols (I2C, SPI, UART, CAN) in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/blog/" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/blog/" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item active">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>EMBEDDED SYSTEMS DESIGN</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">COMMUNICATION PROTOCOLS (I2C, SPI, UART, CAN)</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Communication Protocols (I2C, SPI, UART, CAN)</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>4 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="overview">Overview</h2><p>Embedded systems communicate with sensors, actuators, and other systems through <strong>communication protocols</strong>. Choosing the right protocol depends on speed, distance, number of devices, and power requirements.</p>
+<h2 id="i2c-inter-integrated-circuit">I2C (Inter-Integrated Circuit)</h2><p>A <strong>two-wire</strong> synchronous protocol for short-distance communication between ICs on the same board.</p>
+<pre><code class="language-text">┌──────┐   SDA (Data)    ┌──────────┐   ┌──────────┐
+│Master├──────────────────┤ Slave 1  │───┤ Slave 2  │
+│      ├──────────────────┤ (0x48)   │───┤ (0x68)   │
+└──────┘   SCL (Clock)   └──────────┘   └──────────┘</code></pre><h3 id="key-characteristics">Key Characteristics</h3><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wires</td>
+<td>2 (SDA, SCL) + GND</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>100 kHz (standard), 400 kHz (fast), 3.4 MHz (high-speed)</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>Multi-master, multi-slave</td>
+</tr>
+<tr>
+<td>Addressing</td>
+<td>7-bit or 10-bit addresses</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>Short (&lt; 1m on PCB)</td>
+</tr>
+</tbody></table>
+<h3 id="how-it-works">How It Works</h3><ol>
+<li>Master sends <strong>START</strong> condition</li>
+<li>Master sends <strong>slave address</strong> + R/W bit</li>
+<li>Slave sends <strong>ACK</strong></li>
+<li>Data transfer (8 bits + ACK per byte)</li>
+<li>Master sends <strong>STOP</strong> condition</li>
+</ol>
+<h3 id="use-cases">Use Cases</h3><ul>
+<li>Temperature sensors (LM75, TMP102)</li>
+<li>IMUs (MPU6050)</li>
+<li>EEPROMs (AT24C256)</li>
+<li>Display controllers (SSD1306 OLED)</li>
+</ul>
+<h3 id="pros-cons">Pros & Cons</h3><ul>
+<li>✅ Only 2 wires for multiple devices</li>
+<li>✅ Built-in addressing — no chip select lines</li>
+<li>❌ Slower than SPI</li>
+<li>❌ More complex protocol (ACK/NACK, arbitration)</li>
+</ul>
+<h2 id="spi-serial-peripheral-interface">SPI (Serial Peripheral Interface)</h2><p>A <strong>four-wire</strong> synchronous protocol optimized for high-speed, full-duplex communication.</p>
+<pre><code class="language-text">┌──────┐  MOSI (Master Out)  ┌──────┐
+│Master├─────────────────────┤Slave │
+│      │  MISO (Master In)   │      │
+│      ├─────────────────────┤      │
+│      │  SCK  (Clock)       │      │
+│      ├─────────────────────┤      │
+│      │  CS   (Chip Select) │      │
+│      ├─────────────────────┤      │
+└──────┘                     └──────┘</code></pre><h3 id="key-characteristics">Key Characteristics</h3><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wires</td>
+<td>4 (MOSI, MISO, SCK, CS)</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Up to 100+ MHz</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>Single master, multiple slaves (1 CS per slave)</td>
+</tr>
+<tr>
+<td>Duplex</td>
+<td>Full duplex</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>Short (PCB-level)</td>
+</tr>
+</tbody></table>
+<h3 id="use-cases">Use Cases</h3><ul>
+<li>Flash memory (W25Q series)</li>
+<li>SD cards</li>
+<li>Display controllers (ILI9341 TFT)</li>
+<li>ADCs and DACs</li>
+<li>Wireless modules (nRF24L01)</li>
+</ul>
+<h3 id="pros-cons">Pros & Cons</h3><ul>
+<li>✅ Very fast — no addressing overhead</li>
+<li>✅ Full duplex — simultaneous send/receive</li>
+<li>✅ Simple protocol — just shift data</li>
+<li>❌ More wires (1 CS per slave)</li>
+<li>❌ No built-in ACK — no error detection</li>
+<li>❌ Single master only</li>
+</ul>
+<h2 id="uart-universal-asynchronous-receiver-transmitter">UART (Universal Asynchronous Receiver-Transmitter)</h2><p>An <strong>asynchronous</strong> serial protocol — no clock line. Both sides agree on a baud rate.</p>
+<pre><code class="language-text">┌──────┐   TX ──▶ RX   ┌──────┐
+│Device├───────────────┤Device│
+│  A   │   RX ◀── TX   │  B   │
+└──────┘               └──────┘</code></pre><h3 id="key-characteristics">Key Characteristics</h3><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wires</td>
+<td>2 (TX, RX) + GND</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Common: 9600, 115200 baud</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>Point-to-point</td>
+</tr>
+<tr>
+<td>Duplex</td>
+<td>Full duplex</td>
+</tr>
+<tr>
+<td>Distance</td>
+<td>Short to medium</td>
+</tr>
+</tbody></table>
+<h3 id="framing">Framing</h3><pre><code class="language-text">[START (1)] [DATA (5-9 bits)] [PARITY (0-1)] [STOP (1-2)]</code></pre><p>No clock — both sides must agree on baud rate, data bits, parity, and stop bits (e.g., <code>115200 8N1</code>).</p>
+<h3 id="use-cases">Use Cases</h3><ul>
+<li>Debug console / serial monitor</li>
+<li>GPS modules</li>
+<li>Bluetooth modules (HC-05)</li>
+<li>Inter-processor communication</li>
+</ul>
+<h3 id="variants">Variants</h3><ul>
+<li><strong>RS-232</strong> — voltage levels for longer distances, legacy computers</li>
+<li><strong>RS-485</strong> — differential signaling, multi-drop, up to 1200m, industrial</li>
+</ul>
+<h2 id="can-controller-area-network">CAN (Controller Area Network)</h2><p>A <strong>robust, multi-master</strong> protocol designed for automotive and industrial environments.</p>
+<pre><code class="language-text">┌──────┐   ┌──────┐   ┌──────┐   ┌──────┐
+│ECU 1 ├───┤ECU 2 ├───┤ECU 3 ├───┤ECU 4 │
+└──┬───┘   └──┬───┘   └──┬───┘   └──┬───┘
+   │          │          │          │
+───┴──────────┴──────────┴──────────┴──── CAN Bus
+    CAN_H ──────────────────────────────
+    CAN_L ──────────────────────────────</code></pre><h3 id="key-characteristics">Key Characteristics</h3><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Wires</td>
+<td>2 (CAN_H, CAN_L) — differential</td>
+</tr>
+<tr>
+<td>Speed</td>
+<td>Up to 1 Mbps (CAN 2.0), 5 Mbps (CAN FD)</td>
+</tr>
+<tr>
+<td>Topology</td>
+<td>Multi-master bus</td>
+</tr>
+<tr>
+<td>Message-based</td>
+<td>Broadcast, priority by ID</td>
+</tr>
+<tr>
+<td>Error handling</td>
+<td>Built-in CRC, ACK, error frames</td>
+</tr>
+</tbody></table>
+<h3 id="how-it-works">How It Works</h3><ul>
+<li><strong>Message-based</strong> — no addresses, messages have IDs</li>
+<li><strong>Priority</strong> — lower ID = higher priority (bitwise arbitration)</li>
+<li><strong>Broadcast</strong> — all nodes see all messages, filter by ID</li>
+<li><strong>Error detection</strong> — CRC, bit stuffing, ACK checking, error counters</li>
+</ul>
+<h3 id="use-cases">Use Cases</h3><ul>
+<li>Automotive (engine control, ABS, airbags)</li>
+<li>Industrial automation</li>
+<li>Medical devices</li>
+<li>Aerospace</li>
+</ul>
+<h2 id="protocol-comparison">Protocol Comparison</h2><table>
+<thead>
+<tr>
+<th>Protocol</th>
+<th>Speed</th>
+<th>Wires</th>
+<th>Distance</th>
+<th>Multi-device</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>I2C</td>
+<td>Medium</td>
+<td>2</td>
+<td>Short</td>
+<td>Yes (addressing)</td>
+<td>Sensors, EEPROMs</td>
+</tr>
+<tr>
+<td>SPI</td>
+<td>High</td>
+<td>4+</td>
+<td>Short</td>
+<td>Yes (CS lines)</td>
+<td>Flash, displays</td>
+</tr>
+<tr>
+<td>UART</td>
+<td>Low-Med</td>
+<td>2</td>
+<td>Medium</td>
+<td>No (point-to-point)</td>
+<td>Debug, GPS</td>
+</tr>
+<tr>
+<td>CAN</td>
+<td>Medium</td>
+<td>2</td>
+<td>Long</td>
+<td>Yes (bus)</td>
+<td>Automotive, industrial</td>
+</tr>
+</tbody></table>
+<h2 id="choosing-the-right-protocol">Choosing the Right Protocol</h2><ol>
+<li><strong>I2C</strong> when you need many low-speed devices on 2 wires</li>
+<li><strong>SPI</strong> when speed matters and you have spare GPIO for CS lines</li>
+<li><strong>UART</strong> for simple point-to-point debug or module communication</li>
+<li><strong>CAN</strong> for robust, safety-critical multi-node networks</li>
+</ol>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#overview" class="toc-link ">Overview</a>
+<a href="#i2c-inter-integrated-circuit" class="toc-link ">I2C (Inter-Integrated Circuit)</a>
+<a href="#key-characteristics" class="toc-link toc-sub">Key Characteristics</a>
+<a href="#how-it-works" class="toc-link toc-sub">How It Works</a>
+<a href="#use-cases" class="toc-link toc-sub">Use Cases</a>
+<a href="#pros-cons" class="toc-link toc-sub">Pros & Cons</a>
+<a href="#spi-serial-peripheral-interface" class="toc-link ">SPI (Serial Peripheral Interface)</a>
+<a href="#key-characteristics" class="toc-link toc-sub">Key Characteristics</a>
+<a href="#use-cases" class="toc-link toc-sub">Use Cases</a>
+<a href="#pros-cons" class="toc-link toc-sub">Pros & Cons</a>
+<a href="#uart-universal-asynchronous-receiver-transmitter" class="toc-link ">UART (Universal Asynchronous Receiver-Transmitter)</a>
+<a href="#key-characteristics" class="toc-link toc-sub">Key Characteristics</a>
+<a href="#framing" class="toc-link toc-sub">Framing</a>
+<a href="#use-cases" class="toc-link toc-sub">Use Cases</a>
+<a href="#variants" class="toc-link toc-sub">Variants</a>
+<a href="#can-controller-area-network" class="toc-link ">CAN (Controller Area Network)</a>
+<a href="#key-characteristics" class="toc-link toc-sub">Key Characteristics</a>
+<a href="#how-it-works" class="toc-link toc-sub">How It Works</a>
+<a href="#use-cases" class="toc-link toc-sub">Use Cases</a>
+<a href="#protocol-comparison" class="toc-link ">Protocol Comparison</a>
+<a href="#choosing-the-right-protocol" class="toc-link ">Choosing the Right Protocol</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

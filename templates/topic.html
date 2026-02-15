@@ -1,0 +1,31 @@
+<div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        {{sidebar}}
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        {{breadcrumb}}
+        <div class="topic-header">
+            <span class="topic-pillar-label">{{pillar}}</span>
+            <h1 class="topic-title">{{title}}</h1>
+            <div class="topic-meta">
+                <span>{{date}}</span>
+                <span class="topic-meta-sep">·</span>
+                <span>{{readTime}}</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            {{content}}
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            {{toc}}
+        </div>
+    </aside>
+</div>

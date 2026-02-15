@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Power Management & Energy-Efficient Design — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Power Management & Energy-Efficient Design in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/blog/" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/blog/" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item active">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>EMBEDDED SYSTEMS DESIGN</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">POWER MANAGEMENT & ENERGY-EFFICIENT DESIGN</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Power Management & Energy-Efficient Design</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>4 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="why-power-management-matters">Why Power Management Matters</h2><p>Battery-powered embedded devices must make every microamp count. A poorly optimized device lasts days; an optimized one lasts years. Power management is a <strong>system-level design concern</strong> that spans hardware and software.</p>
+<h2 id="power-consumption-fundamentals">Power Consumption Fundamentals</h2><h3 id="dynamic-power">Dynamic Power</h3><p>Power consumed during active operation (CPU executing, peripherals running):</p>
+<pre><code class="language-text">P_dynamic = C × V² × f</code></pre><ul>
+<li><strong>C</strong> = capacitance (chip design)</li>
+<li><strong>V</strong> = supply voltage (lower = less power, quadratic effect)</li>
+<li><strong>f</strong> = clock frequency (lower = less power)</li>
+</ul>
+<p><strong>Key insight:</strong> Reducing voltage has a <strong>squared</strong> effect on power. This is why DVFS (Dynamic Voltage and Frequency Scaling) is so effective.</p>
+<h3 id="static-power-leakage">Static Power (Leakage)</h3><p>Power consumed even when idle. Proportional to transistor count and temperature. Significant in modern process nodes.</p>
+<h2 id="mcu-low-power-modes">MCU Low-Power Modes</h2><p>Most microcontrollers provide multiple power modes:</p>
+<table>
+<thead>
+<tr>
+<th>Mode</th>
+<th>CPU</th>
+<th>Peripherals</th>
+<th>RAM</th>
+<th>Wake Source</th>
+<th>Current</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Run</strong></td>
+<td>Active</td>
+<td>Active</td>
+<td>Retained</td>
+<td>N/A</td>
+<td>1-100 mA</td>
+</tr>
+<tr>
+<td><strong>Sleep</strong></td>
+<td>Stopped</td>
+<td>Active</td>
+<td>Retained</td>
+<td>Any interrupt</td>
+<td>0.1-10 mA</td>
+</tr>
+<tr>
+<td><strong>Deep Sleep</strong></td>
+<td>Stopped</td>
+<td>Most off</td>
+<td>Retained</td>
+<td>RTC, GPIO, watchdog</td>
+<td>1-100 µA</td>
+</tr>
+<tr>
+<td><strong>Standby</strong></td>
+<td>Stopped</td>
+<td>Off</td>
+<td>Lost</td>
+<td>Reset, RTC, WKUP pin</td>
+<td>0.1-10 µA</td>
+</tr>
+<tr>
+<td><strong>Shutdown</strong></td>
+<td>Off</td>
+<td>Off</td>
+<td>Lost</td>
+<td>Reset, WKUP pin</td>
+<td>&lt; 1 µA</td>
+</tr>
+</tbody></table>
+<h3 id="sleep-mode-design-pattern">Sleep Mode Design Pattern</h3><pre><code class="language-c">void main(void) {
+    init_hardware();
+    
+    while (1) {
+        // Do work
+        process_sensor_data();
+        transmit_data();
+        
+        // Configure wake-up source
+        set_rtc_alarm(NEXT_WAKE_INTERVAL);
+        
+        // Enter low-power mode
+        enter_deep_sleep();
+        
+        // Execution resumes here after wake-up
+    }
+}</code></pre><h2 id="duty-cycling">Duty Cycling</h2><p>Alternate between active and sleep modes. The <strong>duty cycle</strong> determines battery life.</p>
+<pre><code class="language-text">Active: 10ms every 1 second
+Duty cycle = 10ms / 1000ms = 1%
+
+If active current = 10mA, sleep current = 5µA:
+Average current = (10mA × 1%) + (5µA × 99%) ≈ 105 µA</code></pre><h3 id="battery-life-estimation">Battery Life Estimation</h3><pre><code class="language-text">Battery capacity: 1000 mAh
+Average current: 105 µA
+
+Battery life = 1000 mAh / 0.105 mA ≈ 9,524 hours ≈ 397 days</code></pre><h2 id="peripheral-power-management">Peripheral Power Management</h2><h3 id="clock-gating">Clock Gating</h3><p>Disable clocks to unused peripherals. Most MCUs allow per-peripheral clock control.</p>
+<pre><code class="language-c">// Disable UART2 clock when not in use
+RCC-&gt;APB1ENR &amp;= ~RCC_APB1ENR_UART2EN;
+
+// Re-enable when needed
+RCC-&gt;APB1ENR |= RCC_APB1ENR_UART2EN;</code></pre><h3 id="power-domains">Power Domains</h3><p>Group peripherals into power domains that can be independently powered on/off. Turn off entire domains when their peripherals aren&#39;t needed.</p>
+<h3 id="dma-direct-memory-access">DMA (Direct Memory Access)</h3><p>Let the DMA controller handle data transfers while the CPU sleeps. CPU wakes only to process completed transfers.</p>
+<pre><code class="language-c">// Start DMA transfer, CPU goes to sleep
+HAL_ADC_Start_DMA(&amp;hadc1, buffer, BUFFER_SIZE);
+enter_sleep_mode();
+
+// DMA complete interrupt wakes CPU
+void DMA_IRQHandler(void) {
+    process_adc_data(buffer, BUFFER_SIZE);
+}</code></pre><h2 id="communication-power-optimization">Communication Power Optimization</h2><h3 id="radio-power">Radio Power</h3><p>Wireless communication (BLE, WiFi, LoRa, cellular) is often the <strong>biggest power consumer</strong>.</p>
+<table>
+<thead>
+<tr>
+<th>Radio</th>
+<th>TX Current</th>
+<th>Strategy</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>BLE</td>
+<td>5-15 mA</td>
+<td>Short bursts, low duty cycle</td>
+</tr>
+<tr>
+<td>WiFi</td>
+<td>100-300 mA</td>
+<td>Batch data, use PSM</td>
+</tr>
+<tr>
+<td>LoRa</td>
+<td>20-120 mA</td>
+<td>Very low data rate, long sleep</td>
+</tr>
+<tr>
+<td>LTE-M</td>
+<td>100-300 mA</td>
+<td>PSM + eDRX</td>
+</tr>
+</tbody></table>
+<h3 id="strategies">Strategies</h3><ul>
+<li><strong>Batch data</strong> — collect multiple readings, transmit in one burst</li>
+<li><strong>Reduce TX power</strong> — only use needed signal strength</li>
+<li><strong>Use connection intervals</strong> — BLE: longer intervals = less power</li>
+<li><strong>Power Save Mode (PSM)</strong> — cellular: device is unreachable but alive</li>
+</ul>
+<h2 id="software-optimization">Software Optimization</h2><h3 id="algorithm-efficiency">Algorithm Efficiency</h3><p>More efficient algorithms = fewer CPU cycles = less time active = less power.</p>
+<pre><code class="language-c">// Bad: O(n²) — CPU active longer
+for (int i = 0; i &lt; n; i++)
+    for (int j = 0; j &lt; n; j++)
+        process(data[i][j]);
+
+// Good: O(n) — CPU sleeps sooner
+for (int i = 0; i &lt; n; i++)
+    process_batch(data[i], n);</code></pre><h3 id="interrupt-driven-vs-polling">Interrupt-Driven vs Polling</h3><pre><code class="language-c">// Bad: Polling wastes CPU cycles
+while (!uart_data_available()) {
+    // CPU is active doing nothing
+}
+
+// Good: Interrupt-driven, CPU sleeps until data arrives
+void UART_IRQHandler(void) {
+    process_received_byte(UART-&gt;DR);
+}</code></pre><h3 id="compiler-optimization">Compiler Optimization</h3><p>Use <code>-Os</code> (optimize for size) or <code>-O2</code> (optimize for speed). Smaller code = fewer Flash reads = less power. Faster execution = more time in sleep.</p>
+<h2 id="energy-harvesting">Energy Harvesting</h2><p>For ultra-long-life or maintenance-free devices:</p>
+<ul>
+<li><strong>Solar</strong> — indoor (µW) or outdoor (mW) harvesting</li>
+<li><strong>Vibration</strong> — piezoelectric harvesting from mechanical energy</li>
+<li><strong>Thermal</strong> — thermoelectric generators (TEG) from temperature differentials</li>
+<li><strong>RF</strong> — harvesting energy from ambient radio waves</li>
+</ul>
+<p>These supplement or replace batteries but provide intermittent power — your firmware must handle <strong>power interruptions gracefully</strong>.</p>
+<h2 id="design-checklist">Design Checklist</h2><ol>
+<li>☐ Profile power consumption in all modes (multimeter, power analyzer)</li>
+<li>☐ Identify and disable unused peripherals/clocks</li>
+<li>☐ Use deepest sleep mode possible for the duty cycle</li>
+<li>☐ Optimize communication duty cycle and TX power</li>
+<li>☐ Use DMA and interrupts instead of polling</li>
+<li>☐ Estimate battery life with measured current values</li>
+<li>☐ Test wake-up latency from each sleep mode</li>
+<li>☐ Verify all wake-up sources work correctly</li>
+</ol>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#why-power-management-matters" class="toc-link ">Why Power Management Matters</a>
+<a href="#power-consumption-fundamentals" class="toc-link ">Power Consumption Fundamentals</a>
+<a href="#dynamic-power" class="toc-link toc-sub">Dynamic Power</a>
+<a href="#static-power-leakage" class="toc-link toc-sub">Static Power (Leakage)</a>
+<a href="#mcu-low-power-modes" class="toc-link ">MCU Low-Power Modes</a>
+<a href="#sleep-mode-design-pattern" class="toc-link toc-sub">Sleep Mode Design Pattern</a>
+<a href="#duty-cycling" class="toc-link ">Duty Cycling</a>
+<a href="#battery-life-estimation" class="toc-link toc-sub">Battery Life Estimation</a>
+<a href="#peripheral-power-management" class="toc-link ">Peripheral Power Management</a>
+<a href="#clock-gating" class="toc-link toc-sub">Clock Gating</a>
+<a href="#power-domains" class="toc-link toc-sub">Power Domains</a>
+<a href="#dma-direct-memory-access" class="toc-link toc-sub">DMA (Direct Memory Access)</a>
+<a href="#communication-power-optimization" class="toc-link ">Communication Power Optimization</a>
+<a href="#radio-power" class="toc-link toc-sub">Radio Power</a>
+<a href="#strategies" class="toc-link toc-sub">Strategies</a>
+<a href="#software-optimization" class="toc-link ">Software Optimization</a>
+<a href="#algorithm-efficiency" class="toc-link toc-sub">Algorithm Efficiency</a>
+<a href="#interrupt-driven-vs-polling" class="toc-link toc-sub">Interrupt-Driven vs Polling</a>
+<a href="#compiler-optimization" class="toc-link toc-sub">Compiler Optimization</a>
+<a href="#energy-harvesting" class="toc-link ">Energy Harvesting</a>
+<a href="#design-checklist" class="toc-link ">Design Checklist</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

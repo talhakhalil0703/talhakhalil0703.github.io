@@ -1,0 +1,14 @@
+{
+    "pillar": "Blog",
+    "sections": [
+        {
+            "name": "2026",
+            "topics": [
+                {
+                    "slug": "first-test",
+                    "title": "First Test"
+                }
+            ]
+        }
+    ]
+}

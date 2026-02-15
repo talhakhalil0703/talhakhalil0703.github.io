@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Client-Server Architecture — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Simple Client-Server Architecture in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/blog/" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/blog/" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item active">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">SIMPLE CLIENT-SERVER ARCHITECTURE</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Simple Client-Server Architecture</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>2 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="the-basic-model">The Basic Model</h2><p>Every networked application starts as a <strong>client-server architecture</strong>. A client sends a request, a server processes it and sends a response. This is the simplest distributed system.</p>
+<pre><code class="language-text">┌──────────┐         HTTP          ┌──────────┐
+│  Client  │  ──── Request ────▶  │  Server  │
+│ (Browser)│  ◀── Response ────   │  (API)   │
+└──────────┘                      └──────────┘</code></pre><h2 id="client">Client</h2><p>The client is any device or application that initiates requests:</p>
+<ul>
+<li>Web browsers (Chrome, Firefox)</li>
+<li>Mobile apps (iOS, Android)</li>
+<li>Desktop applications</li>
+<li>IoT devices</li>
+<li>Other servers (server-to-server communication)</li>
+</ul>
+<p>Clients are typically <strong>stateless</strong> — they don&#39;t remember previous interactions unless they store something locally (cookies, localStorage, etc.).</p>
+<h2 id="server">Server</h2><p>The server listens for incoming requests, processes them, and returns responses:</p>
+<ul>
+<li><strong>Web server</strong> — serves HTML, CSS, JS files (Nginx, Apache)</li>
+<li><strong>Application server</strong> — runs business logic (Node.js, Django, Spring)</li>
+<li><strong>Database server</strong> — stores and retrieves data (PostgreSQL, MongoDB)</li>
+</ul>
+<p>In practice, a &quot;server&quot; can be one machine handling all three roles, or separate machines for each.</p>
+<h2 id="the-request-response-cycle">The Request-Response Cycle</h2><ol>
+<li><strong>DNS Resolution</strong> — client resolves <code>example.com</code> to an IP address</li>
+<li><strong>TCP Connection</strong> — client opens a connection to the server (TCP handshake)</li>
+<li><strong>Request</strong> — client sends an HTTP request (method, headers, body)</li>
+<li><strong>Processing</strong> — server routes the request, runs logic, queries a database</li>
+<li><strong>Response</strong> — server sends back status code, headers, and body</li>
+<li><strong>Rendering</strong> — client processes the response (renders HTML, parses JSON)</li>
+</ol>
+<h2 id="communication-protocols">Communication Protocols</h2><h3 id="http-https">HTTP / HTTPS</h3><p>The most common protocol for web communication. Stateless, request-response based.</p>
+<ul>
+<li><code>GET</code> — retrieve data</li>
+<li><code>POST</code> — create data</li>
+<li><code>PUT</code> / <code>PATCH</code> — update data</li>
+<li><code>DELETE</code> — remove data</li>
+</ul>
+<h3 id="websocket">WebSocket</h3><p>Persistent, bidirectional connection. Useful for real-time features:</p>
+<ul>
+<li>Chat applications</li>
+<li>Live dashboards</li>
+<li>Multiplayer games</li>
+</ul>
+<h3 id="grpc">gRPC</h3><p>High-performance RPC framework using Protocol Buffers. Used for server-to-server communication where performance matters.</p>
+<h2 id="scaling-beyond-a-single-server">Scaling Beyond a Single Server</h2><p>A single server can handle a limited number of concurrent connections. When traffic grows, you have options:</p>
+<ol>
+<li><strong>Vertical scaling</strong> — upgrade the server hardware</li>
+<li><strong>Horizontal scaling</strong> — add more servers behind a load balancer</li>
+<li><strong>Caching</strong> — reduce load by serving repeated requests from memory</li>
+<li><strong>CDN</strong> — distribute static content geographically</li>
+</ol>
+<p>The transition from single-server to multi-server architecture is where system design really begins. Every topic in this course builds on this foundation.</p>
+<h2 id="when-to-use-this-pattern">When to Use This Pattern</h2><p>Client-server is appropriate for:</p>
+<ul>
+<li>Web applications</li>
+<li>APIs and microservices</li>
+<li>Mobile backends</li>
+<li>Any request-response workflow</li>
+</ul>
+<p>Alternatives include <strong>peer-to-peer</strong> (BitTorrent, blockchain) and <strong>event-driven architectures</strong> (Kafka, pub/sub).</p>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#the-basic-model" class="toc-link ">The Basic Model</a>
+<a href="#client" class="toc-link ">Client</a>
+<a href="#server" class="toc-link ">Server</a>
+<a href="#the-request-response-cycle" class="toc-link ">The Request-Response Cycle</a>
+<a href="#communication-protocols" class="toc-link ">Communication Protocols</a>
+<a href="#http-https" class="toc-link toc-sub">HTTP / HTTPS</a>
+<a href="#websocket" class="toc-link toc-sub">WebSocket</a>
+<a href="#grpc" class="toc-link toc-sub">gRPC</a>
+<a href="#scaling-beyond-a-single-server" class="toc-link ">Scaling Beyond a Single Server</a>
+<a href="#when-to-use-this-pattern" class="toc-link ">When to Use This Pattern</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

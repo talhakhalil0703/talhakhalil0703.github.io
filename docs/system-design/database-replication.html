@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Database Replication — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Database Replication in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/blog/" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/blog/" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item active">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">DATABASE REPLICATION</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Database Replication</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>3 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="why-replicate">Why Replicate?</h2><p>Database replication copies data across multiple servers to achieve:</p>
+<ul>
+<li><strong>High availability</strong> — if one server dies, others serve requests</li>
+<li><strong>Read scalability</strong> — distribute read queries across replicas</li>
+<li><strong>Data durability</strong> — data survives hardware failures</li>
+<li><strong>Geographic performance</strong> — replicas closer to users reduce latency</li>
+</ul>
+<h2 id="leader-follower-primary-replica">Leader-Follower (Primary-Replica)</h2><p>The most common replication model.</p>
+<pre><code class="language-text">Writes ──▶ [Leader/Primary]
+              │
+         ┌────┼────┐
+         ▼    ▼    ▼
+      [Replica] [Replica] [Replica]
+         ▲    ▲    ▲
+Reads ───┴────┴────┘</code></pre><ul>
+<li><strong>One leader</strong> accepts all writes</li>
+<li><strong>Multiple followers</strong> replicate from the leader and serve reads</li>
+<li>If the leader fails, a follower is <strong>promoted</strong> to leader (failover)</li>
+</ul>
+<h3 id="synchronous-vs-asynchronous">Synchronous vs Asynchronous</h3><p><strong>Synchronous replication:</strong></p>
+<ul>
+<li>Leader waits for followers to confirm writes</li>
+<li>Guarantees consistency but increases write latency</li>
+<li>If a follower is slow, the whole system slows down</li>
+</ul>
+<p><strong>Asynchronous replication:</strong></p>
+<ul>
+<li>Leader writes locally and returns immediately</li>
+<li>Followers catch up eventually</li>
+<li>Risk: data loss if leader fails before replication completes</li>
+</ul>
+<p><strong>Semi-synchronous:</strong> One follower is synchronous (guarantees at least one copy), others are asynchronous.</p>
+<h2 id="leader-leader-multi-master">Leader-Leader (Multi-Master)</h2><p>Multiple nodes accept writes. Each replicates to the others.</p>
+<pre><code class="language-text">[Leader A] ◀──▶ [Leader B]
+     ▲                ▲
+     │                │
+  Writes           Writes
+(Region US)    (Region EU)</code></pre><h3 id="pros">Pros</h3><ul>
+<li>Writes from any region — great for geo-distributed systems</li>
+<li>No single point of failure for writes</li>
+</ul>
+<h3 id="cons">Cons</h3><ul>
+<li><strong>Write conflicts</strong> — what if two leaders modify the same row simultaneously?</li>
+<li>Conflict resolution is hard: last-write-wins, merge, or manual resolution</li>
+<li>More complex to operate</li>
+</ul>
+<h2 id="leaderless-replication">Leaderless Replication</h2><p>Every node can accept reads and writes. Used by Dynamo-style databases.</p>
+<p><strong>Examples:</strong> Cassandra, Riak, Amazon DynamoDB</p>
+<h3 id="quorum-reads-and-writes">Quorum Reads and Writes</h3><p>With <code>N</code> replicas, configure:</p>
+<ul>
+<li><code>W</code> = number of nodes that must acknowledge a write</li>
+<li><code>R</code> = number of nodes that must respond to a read</li>
+</ul>
+<p><strong>Rule:</strong> <code>W + R &gt; N</code> ensures you&#39;ll always read the latest write.</p>
+<pre><code class="language-text">N = 3, W = 2, R = 2
+Write to 2 out of 3 nodes
+Read from 2 out of 3 nodes
+Overlap guarantees freshness</code></pre><h3 id="anti-entropy">Anti-Entropy</h3><p>Background processes compare replicas and fix inconsistencies using:</p>
+<ul>
+<li><strong>Merkle trees</strong> — efficient comparison of data between nodes</li>
+<li><strong>Read repair</strong> — on a read, if replicas disagree, update the stale ones</li>
+</ul>
+<h2 id="replication-lag">Replication Lag</h2><p>In asynchronous replication, followers may be behind the leader. This causes:</p>
+<h3 id="read-after-write-inconsistency">Read-After-Write Inconsistency</h3><p>User writes data, but the next read hits a stale replica:</p>
+<p><strong>Fix:</strong> Read from leader for recently written data, or track last write timestamp.</p>
+<h3 id="monotonic-read-inconsistency">Monotonic Read Inconsistency</h3><p>User reads from different replicas and sees data go &quot;backward&quot; in time:</p>
+<p><strong>Fix:</strong> Pin user to a specific replica (session stickiness).</p>
+<h2 id="failover">Failover</h2><p>When the leader fails, a follower must be promoted:</p>
+<ol>
+<li><strong>Detect failure</strong> — heartbeat/health check timeout</li>
+<li><strong>Choose new leader</strong> — most up-to-date follower</li>
+<li><strong>Reconfigure</strong> — redirect writes to new leader, update followers</li>
+</ol>
+<h3 id="split-brain-problem">Split-Brain Problem</h3><p>Two nodes both think they&#39;re the leader. Both accept writes, data diverges.</p>
+<p><strong>Prevention:</strong> Fencing tokens, consensus algorithms (Raft, Paxos), or managed databases that handle this automatically.</p>
+<h2 id="replication-in-practice">Replication in Practice</h2><table>
+<thead>
+<tr>
+<th>Database</th>
+<th>Default Model</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>PostgreSQL</td>
+<td>Leader-follower</td>
+<td>Streaming replication</td>
+</tr>
+<tr>
+<td>MySQL</td>
+<td>Leader-follower</td>
+<td>binlog replication</td>
+</tr>
+<tr>
+<td>MongoDB</td>
+<td>Leader-follower</td>
+<td>Replica sets</td>
+</tr>
+<tr>
+<td>Cassandra</td>
+<td>Leaderless</td>
+<td>Tunable quorums</td>
+</tr>
+<tr>
+<td>CockroachDB</td>
+<td>Consensus (Raft)</td>
+<td>Strong consistency</td>
+</tr>
+</tbody></table>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#why-replicate" class="toc-link ">Why Replicate?</a>
+<a href="#leader-follower-primary-replica" class="toc-link ">Leader-Follower (Primary-Replica)</a>
+<a href="#synchronous-vs-asynchronous" class="toc-link toc-sub">Synchronous vs Asynchronous</a>
+<a href="#leader-leader-multi-master" class="toc-link ">Leader-Leader (Multi-Master)</a>
+<a href="#pros" class="toc-link toc-sub">Pros</a>
+<a href="#cons" class="toc-link toc-sub">Cons</a>
+<a href="#leaderless-replication" class="toc-link ">Leaderless Replication</a>
+<a href="#quorum-reads-and-writes" class="toc-link toc-sub">Quorum Reads and Writes</a>
+<a href="#anti-entropy" class="toc-link toc-sub">Anti-Entropy</a>
+<a href="#replication-lag" class="toc-link ">Replication Lag</a>
+<a href="#read-after-write-inconsistency" class="toc-link toc-sub">Read-After-Write Inconsistency</a>
+<a href="#monotonic-read-inconsistency" class="toc-link toc-sub">Monotonic Read Inconsistency</a>
+<a href="#failover" class="toc-link ">Failover</a>
+<a href="#split-brain-problem" class="toc-link toc-sub">Split-Brain Problem</a>
+<a href="#replication-in-practice" class="toc-link ">Replication in Practice</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

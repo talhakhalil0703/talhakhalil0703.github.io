@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caching — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Caching in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/blog/" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/blog/" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item active">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">CACHING</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Caching</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>3 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="what-is-caching">What Is Caching?</h2><p>Caching stores copies of frequently accessed data in a <strong>faster storage layer</strong> so future requests are served more quickly. It&#39;s one of the most impactful performance optimizations in system design.</p>
+<pre><code class="language-text">Client ──▶ Cache (hit?) ──▶ yes ──▶ return cached data
+                          └──▶ no ──▶ Database ──▶ store in cache ──▶ return</code></pre><h2 id="cache-levels">Cache Levels</h2><h3 id="client-side-cache">Client-Side Cache</h3><p>Browser cache, mobile app cache. Stores static assets, API responses.</p>
+<h3 id="cdn-cache">CDN Cache</h3><p>Geographically distributed. Caches static content (images, CSS, JS) close to users.</p>
+<h3 id="application-cache">Application Cache</h3><p>In-memory cache in your application layer (e.g., Redis, Memcached).</p>
+<h3 id="database-cache">Database Cache</h3><p>Query result cache built into the database engine. Automatic but limited control.</p>
+<h2 id="caching-strategies">Caching Strategies</h2><h3 id="cache-aside-lazy-loading">Cache-Aside (Lazy Loading)</h3><p>Application checks cache first. On miss, reads from database and populates cache.</p>
+<pre><code class="language-text">1. Check cache for key
+2. If miss → read from DB → write to cache → return
+3. If hit → return cached value</code></pre><p><strong>Pros:</strong> Only caches what&#39;s actually requested. Cache failure doesn&#39;t break the system.</p>
+<p><strong>Cons:</strong> Cache miss = 3 round trips (cache check + DB read + cache write). Data can become stale.</p>
+<h3 id="write-through">Write-Through</h3><p>Every write goes to both cache and database simultaneously.</p>
+<pre><code class="language-text">1. Write to cache
+2. Cache writes to database
+3. Return success</code></pre><p><strong>Pros:</strong> Cache is always consistent with DB.</p>
+<p><strong>Cons:</strong> Higher write latency (two writes per operation). Cache may hold data that&#39;s never read.</p>
+<h3 id="write-behind-write-back">Write-Behind (Write-Back)</h3><p>Write to cache immediately, asynchronously flush to database.</p>
+<pre><code class="language-text">1. Write to cache → return immediately
+2. Background process flushes cache to DB</code></pre><p><strong>Pros:</strong> Very fast writes.</p>
+<p><strong>Cons:</strong> Risk of data loss if cache fails before flushing.</p>
+<h3 id="read-through">Read-Through</h3><p>Similar to cache-aside but the cache itself manages database interaction.</p>
+<h2 id="cache-eviction-policies">Cache Eviction Policies</h2><p>When the cache is full, something must be removed:</p>
+<table>
+<thead>
+<tr>
+<th>Policy</th>
+<th>Description</th>
+<th>Best For</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>LRU</strong> (Least Recently Used)</td>
+<td>Evict the item accessed longest ago</td>
+<td>General purpose</td>
+</tr>
+<tr>
+<td><strong>LFU</strong> (Least Frequently Used)</td>
+<td>Evict the least popular item</td>
+<td>Frequency-based workloads</td>
+</tr>
+<tr>
+<td><strong>FIFO</strong> (First In, First Out)</td>
+<td>Evict the oldest item</td>
+<td>Simple, predictable</td>
+</tr>
+<tr>
+<td><strong>TTL</strong> (Time To Live)</td>
+<td>Evict after a set time period</td>
+<td>Data with known freshness</td>
+</tr>
+<tr>
+<td><strong>Random</strong></td>
+<td>Evict a random item</td>
+<td>Surprisingly effective</td>
+</tr>
+</tbody></table>
+<h2 id="cache-invalidation">Cache Invalidation</h2><p>The hardest problem in caching:</p>
+<blockquote>
+<p>&quot;There are only two hard things in Computer Science: cache invalidation and naming things.&quot; – Phil Karlton</p>
+</blockquote>
+<h3 id="strategies">Strategies</h3><ul>
+<li><strong>TTL-based</strong> — set expiration time. Simple but may serve stale data.</li>
+<li><strong>Event-based</strong> — invalidate on write events. More accurate but complex.</li>
+<li><strong>Version-based</strong> — append version number to cache key. New version = cache miss.</li>
+</ul>
+<h2 id="thundering-herd-problem">Thundering Herd Problem</h2><p>When a popular cache entry expires, hundreds of requests simultaneously hit the database.</p>
+<p><strong>Solutions:</strong></p>
+<ul>
+<li><strong>Mutex/lock</strong> — only one request fetches from DB, others wait</li>
+<li><strong>Stale-while-revalidate</strong> — serve stale data while refreshing in background</li>
+<li><strong>Pre-warming</strong> — populate cache before expiration</li>
+</ul>
+<h2 id="common-caching-tools">Common Caching Tools</h2><table>
+<thead>
+<tr>
+<th>Tool</th>
+<th>Type</th>
+<th>Use Case</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>Redis</strong></td>
+<td>In-memory key-value</td>
+<td>Sessions, leaderboards, rate limiting</td>
+</tr>
+<tr>
+<td><strong>Memcached</strong></td>
+<td>In-memory key-value</td>
+<td>Simple caching, string/object storage</td>
+</tr>
+<tr>
+<td><strong>Varnish</strong></td>
+<td>HTTP reverse proxy</td>
+<td>Full-page caching</td>
+</tr>
+<tr>
+<td><strong>Cloudflare</strong></td>
+<td>CDN + edge cache</td>
+<td>Static assets, DDoS protection</td>
+</tr>
+<tr>
+<td><strong>Browser Cache</strong></td>
+<td>Client-side</td>
+<td>Static resources (Cache-Control headers)</td>
+</tr>
+</tbody></table>
+<h2 id="caching-in-interviews">Caching in Interviews</h2><p>When to mention caching:</p>
+<ol>
+<li><strong>Read-heavy system</strong> — &quot;We&#39;ll add a Redis cache in front of the database&quot;</li>
+<li><strong>Hot data</strong> — &quot;Popular items get cached with a 5-minute TTL&quot;</li>
+<li><strong>Global users</strong> — &quot;Static assets served from CDN&quot;</li>
+<li>Always discuss <strong>invalidation strategy</strong> — don&#39;t just say &quot;add a cache&quot;</li>
+</ol>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#what-is-caching" class="toc-link ">What Is Caching?</a>
+<a href="#cache-levels" class="toc-link ">Cache Levels</a>
+<a href="#client-side-cache" class="toc-link toc-sub">Client-Side Cache</a>
+<a href="#cdn-cache" class="toc-link toc-sub">CDN Cache</a>
+<a href="#application-cache" class="toc-link toc-sub">Application Cache</a>
+<a href="#database-cache" class="toc-link toc-sub">Database Cache</a>
+<a href="#caching-strategies" class="toc-link ">Caching Strategies</a>
+<a href="#cache-aside-lazy-loading" class="toc-link toc-sub">Cache-Aside (Lazy Loading)</a>
+<a href="#write-through" class="toc-link toc-sub">Write-Through</a>
+<a href="#write-behind-write-back" class="toc-link toc-sub">Write-Behind (Write-Back)</a>
+<a href="#read-through" class="toc-link toc-sub">Read-Through</a>
+<a href="#cache-eviction-policies" class="toc-link ">Cache Eviction Policies</a>
+<a href="#cache-invalidation" class="toc-link ">Cache Invalidation</a>
+<a href="#strategies" class="toc-link toc-sub">Strategies</a>
+<a href="#thundering-herd-problem" class="toc-link ">Thundering Herd Problem</a>
+<a href="#common-caching-tools" class="toc-link ">Common Caching Tools</a>
+<a href="#caching-in-interviews" class="toc-link ">Caching in Interviews</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

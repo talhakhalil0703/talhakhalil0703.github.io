@@ -1,0 +1,13 @@
+{
+  "name": "talha-khalil-site",
+  "version": "1.0.0",
+  "description": "Static portfolio and knowledge website for Talha Khalil",
+  "scripts": {
+    "build": "bun run build.ts",
+    "dev": "bun run build.ts && bun run serve.ts",
+    "serve": "bun run serve.ts"
+  },
+  "dependencies": {
+    "marked": "^15.0.0"
+  }
+}
