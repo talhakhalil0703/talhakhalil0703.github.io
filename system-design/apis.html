@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>APIs — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about APIs in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/#blog" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/#blog" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item active">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">APIS</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">APIs</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>3 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="what-is-an-api">What Is an API?</h2><p>An <strong>API</strong> (Application Programming Interface) is a contract between two software components. It defines how they communicate—what requests you can make, what data you send, and what you get back.</p>
+<p>In system design, APIs define the interface between your client and server, or between microservices.</p>
+<h2 id="rest-representational-state-transfer">REST (Representational State Transfer)</h2><p>The most common API style for web services. REST uses HTTP methods and treats everything as a <strong>resource</strong>.</p>
+<h3 id="key-principles">Key Principles</h3><ul>
+<li><strong>Stateless</strong> — each request contains all necessary information</li>
+<li><strong>Resource-based</strong> — URLs represent resources (<code>/users/123</code>, <code>/posts</code>)</li>
+<li><strong>HTTP methods</strong> — <code>GET</code>, <code>POST</code>, <code>PUT</code>, <code>DELETE</code> map to CRUD operations</li>
+<li><strong>JSON responses</strong> — standard data format</li>
+</ul>
+<h3 id="example">Example</h3><pre><code class="language-text">GET    /api/users          → List all users
+GET    /api/users/123      → Get user 123
+POST   /api/users          → Create a new user
+PUT    /api/users/123      → Update user 123
+DELETE /api/users/123      → Delete user 123</code></pre><h3 id="status-codes">Status Codes</h3><table>
+<thead>
+<tr>
+<th>Code</th>
+<th>Meaning</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>200</td>
+<td>OK — success</td>
+</tr>
+<tr>
+<td>201</td>
+<td>Created</td>
+</tr>
+<tr>
+<td>400</td>
+<td>Bad Request — client error</td>
+</tr>
+<tr>
+<td>401</td>
+<td>Unauthorized</td>
+</tr>
+<tr>
+<td>404</td>
+<td>Not Found</td>
+</tr>
+<tr>
+<td>429</td>
+<td>Too Many Requests (rate limited)</td>
+</tr>
+<tr>
+<td>500</td>
+<td>Internal Server Error</td>
+</tr>
+</tbody></table>
+<h2 id="graphql">GraphQL</h2><p>Developed by Facebook. Instead of multiple endpoints, you have a <strong>single endpoint</strong> and the client specifies exactly what data it needs.</p>
+<pre><code class="language-graphql">query {
+  user(id: "123") {
+    name
+    email
+    posts {
+      title
+      createdAt
+    }
+  }
+}</code></pre><h3 id="pros">Pros</h3><ul>
+<li>No over-fetching or under-fetching</li>
+<li>Single endpoint simplifies routing</li>
+<li>Strongly typed schema</li>
+</ul>
+<h3 id="cons">Cons</h3><ul>
+<li>Complex to implement and cache</li>
+<li>Can lead to performance issues with deeply nested queries</li>
+<li>Harder to rate-limit since all queries hit one endpoint</li>
+</ul>
+<h2 id="grpc">gRPC</h2><p>A high-performance RPC framework by Google using <strong>Protocol Buffers</strong> (protobuf) for serialization.</p>
+<pre><code class="language-protobuf">service UserService {
+  rpc GetUser (UserRequest) returns (UserResponse);
+  rpc ListUsers (Empty) returns (stream UserResponse);
+}</code></pre><h3 id="when-to-use-grpc">When to Use gRPC</h3><ul>
+<li><strong>Server-to-server</strong> communication (microservices)</li>
+<li>Low-latency, high-throughput requirements</li>
+<li>Bi-directional streaming</li>
+<li>When you need strict contracts between services</li>
+</ul>
+<h3 id="not-great-for">Not Great For</h3><ul>
+<li>Browser clients (limited browser support)</li>
+<li>Public-facing APIs (REST is more universal)</li>
+</ul>
+<h2 id="api-design-best-practices">API Design Best Practices</h2><h3 id="pagination">Pagination</h3><p>Never return unbounded results. Use cursor-based or offset-based pagination:</p>
+<pre><code class="language-text">GET /api/posts?cursor=abc123&amp;limit=20</code></pre><h3 id="rate-limiting">Rate Limiting</h3><p>Protect your API from abuse:</p>
+<ul>
+<li>Token bucket algorithm</li>
+<li>Return <code>429 Too Many Requests</code> with <code>Retry-After</code> header</li>
+<li>Differentiate limits per user/API key tier</li>
+</ul>
+<h3 id="versioning">Versioning</h3><p>Plan for change:</p>
+<pre><code class="language-text">/api/v1/users
+/api/v2/users</code></pre><p>Or use headers: <code>Accept: application/vnd.myapp.v2+json</code></p>
+<h3 id="idempotency">Idempotency</h3><p>For operations that might be retried (network failures), ensure the same request produces the same result:</p>
+<ul>
+<li><code>GET</code> is naturally idempotent</li>
+<li><code>POST</code> with an idempotency key: <code>Idempotency-Key: abc-123</code></li>
+<li><code>PUT</code> and <code>DELETE</code> should be idempotent by design</li>
+</ul>
+<h2 id="choosing-the-right-api-style">Choosing the Right API Style</h2><table>
+<thead>
+<tr>
+<th>Factor</th>
+<th>REST</th>
+<th>GraphQL</th>
+<th>gRPC</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Client type</td>
+<td>Any</td>
+<td>Web/mobile</td>
+<td>Server-to-server</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Good</td>
+<td>Good</td>
+<td>Excellent</td>
+</tr>
+<tr>
+<td>Flexibility</td>
+<td>Moderate</td>
+<td>High</td>
+<td>Low</td>
+</tr>
+<tr>
+<td>Caching</td>
+<td>Easy (HTTP)</td>
+<td>Complex</td>
+<td>Complex</td>
+</tr>
+<tr>
+<td>Learning curve</td>
+<td>Low</td>
+<td>Medium</td>
+<td>High</td>
+</tr>
+</tbody></table>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#what-is-an-api" class="toc-link ">What Is an API?</a>
+<a href="#rest-representational-state-transfer" class="toc-link ">REST (Representational State Transfer)</a>
+<a href="#key-principles" class="toc-link toc-sub">Key Principles</a>
+<a href="#example" class="toc-link toc-sub">Example</a>
+<a href="#status-codes" class="toc-link toc-sub">Status Codes</a>
+<a href="#graphql" class="toc-link ">GraphQL</a>
+<a href="#pros" class="toc-link toc-sub">Pros</a>
+<a href="#cons" class="toc-link toc-sub">Cons</a>
+<a href="#grpc" class="toc-link ">gRPC</a>
+<a href="#when-to-use-grpc" class="toc-link toc-sub">When to Use gRPC</a>
+<a href="#not-great-for" class="toc-link toc-sub">Not Great For</a>
+<a href="#api-design-best-practices" class="toc-link ">API Design Best Practices</a>
+<a href="#pagination" class="toc-link toc-sub">Pagination</a>
+<a href="#rate-limiting" class="toc-link toc-sub">Rate Limiting</a>
+<a href="#versioning" class="toc-link toc-sub">Versioning</a>
+<a href="#idempotency" class="toc-link toc-sub">Idempotency</a>
+<a href="#choosing-the-right-api-style" class="toc-link ">Choosing the Right API Style</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>System Characteristics — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about System Characteristics in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/#blog" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/#blog" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item active">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">SYSTEM CHARACTERISTICS</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">System Characteristics</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>2 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="what-are-system-characteristics">What Are System Characteristics?</h2><p>System characteristics define the <strong>quality attributes</strong> of a distributed system. When someone asks &quot;design X at scale,&quot; they&#39;re really asking about these properties. Understanding the tradeoffs between them is the foundation of system design.</p>
+<h2 id="scalability">Scalability</h2><p>The ability of a system to handle increased load by adding resources.</p>
+<ul>
+<li><strong>Vertical scaling</strong> — add more power to a single machine (bigger CPU, more RAM)</li>
+<li><strong>Horizontal scaling</strong> — add more machines to distribute the load</li>
+</ul>
+<p>A scalable system can grow gracefully. An unscalable system falls over when traffic doubles.</p>
+<h3 id="key-metrics">Key Metrics</h3><ul>
+<li>Requests per second (RPS)</li>
+<li>Concurrent connections</li>
+<li>Data volume growth rate</li>
+</ul>
+<h2 id="availability">Availability</h2><p>The percentage of time a system is operational and accessible.</p>
+<p>Measured in &quot;nines&quot;:</p>
+<table>
+<thead>
+<tr>
+<th>Availability</th>
+<th>Downtime/year</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>99% (two nines)</td>
+<td>3.65 days</td>
+</tr>
+<tr>
+<td>99.9% (three nines)</td>
+<td>8.76 hours</td>
+</tr>
+<tr>
+<td>99.99% (four nines)</td>
+<td>52.6 minutes</td>
+</tr>
+<tr>
+<td>99.999% (five nines)</td>
+<td>5.26 minutes</td>
+</tr>
+</tbody></table>
+<p>High availability is achieved through:</p>
+<ul>
+<li><strong>Redundancy</strong> — no single point of failure</li>
+<li><strong>Failover mechanisms</strong> — automatic switching to backup systems</li>
+<li><strong>Health checks</strong> — continuous monitoring</li>
+</ul>
+<h2 id="reliability">Reliability</h2><p>A reliable system produces correct results even under adverse conditions.</p>
+<p>Reliability ≠ availability. A system can be available but unreliable (it responds, but with wrong data). Key strategies:</p>
+<ul>
+<li>Data replication across nodes</li>
+<li>Checksums and validation</li>
+<li>Retry logic with idempotency</li>
+<li>Graceful degradation</li>
+</ul>
+<h2 id="consistency">Consistency</h2><p>Every read receives the most recent write or an error.</p>
+<p>Three consistency models:</p>
+<ul>
+<li><strong>Strong consistency</strong> — reads always reflect the latest write (e.g., bank transactions)</li>
+<li><strong>Eventual consistency</strong> — reads may be stale temporarily but will converge (e.g., social media likes)</li>
+<li><strong>Causal consistency</strong> — operations that are causally related are seen in order</li>
+</ul>
+<h2 id="latency-vs-throughput">Latency vs Throughput</h2><p><strong>Latency</strong> is the time it takes to process a single request (milliseconds). <strong>Throughput</strong> is the number of requests processed per unit time (requests/second).</p>
+<pre><code class="language-text">Low latency + high throughput = ideal
+Low latency + low throughput = bottleneck somewhere
+High latency + high throughput = batch processing system</code></pre><p>Optimizing one often comes at the cost of the other. Adding a cache improves latency but may reduce consistency.</p>
+<h2 id="partition-tolerance">Partition Tolerance</h2><p>The system continues to operate despite network partitions (communication failures between nodes).</p>
+<p>In distributed systems, network partitions <strong>will happen</strong>. The question is: when they do, do you sacrifice consistency or availability? This is the essence of the CAP theorem.</p>
+<h2 id="durability">Durability</h2><p>Once data is committed, it persists even through system failures.</p>
+<p>Achieved through:</p>
+<ul>
+<li>Write-ahead logs (WAL)</li>
+<li>Replication to multiple disks/nodes</li>
+<li>Periodic snapshots and backups</li>
+</ul>
+<h2 id="the-tradeoff-game">The Tradeoff Game</h2><p>No system gets all characteristics at maximum. System design is about making <strong>informed tradeoffs</strong>:</p>
+<ul>
+<li>E-commerce checkout → strong consistency + high availability</li>
+<li>Social media feed → eventual consistency + low latency</li>
+<li>Banking → strong consistency + durability</li>
+<li>IoT sensor data → high throughput + partition tolerance</li>
+</ul>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#what-are-system-characteristics" class="toc-link ">What Are System Characteristics?</a>
+<a href="#scalability" class="toc-link ">Scalability</a>
+<a href="#key-metrics" class="toc-link toc-sub">Key Metrics</a>
+<a href="#availability" class="toc-link ">Availability</a>
+<a href="#reliability" class="toc-link ">Reliability</a>
+<a href="#consistency" class="toc-link ">Consistency</a>
+<a href="#latency-vs-throughput" class="toc-link ">Latency vs Throughput</a>
+<a href="#partition-tolerance" class="toc-link ">Partition Tolerance</a>
+<a href="#durability" class="toc-link ">Durability</a>
+<a href="#the-tradeoff-game" class="toc-link ">The Tradeoff Game</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

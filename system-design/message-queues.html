@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Message Queues — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Message Queues in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/#blog" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/#blog" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item active">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">MESSAGE QUEUES</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Message Queues</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>3 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="what-is-a-message-queue">What Is a Message Queue?</h2><p>A message queue is a <strong>buffer</strong> between a producer (sender) and a consumer (receiver). The producer adds messages to the queue, and the consumer processes them asynchronously.</p>
+<pre><code class="language-text">Producer ──▶ [Queue: msg1, msg2, msg3] ──▶ Consumer</code></pre><p>This <strong>decouples</strong> the producer from the consumer. They don&#39;t need to be running at the same time or at the same speed.</p>
+<h2 id="why-use-message-queues">Why Use Message Queues?</h2><h3 id="decoupling">Decoupling</h3><p>Services don&#39;t need to know about each other. The producer publishes a message; it doesn&#39;t care who processes it.</p>
+<h3 id="async-processing">Async Processing</h3><p>Offload slow work (sending emails, processing images, generating reports) so the main request returns quickly.</p>
+<h3 id="load-leveling">Load Leveling</h3><p>If traffic spikes, the queue absorbs the burst. Consumers process at their own pace instead of being overwhelmed.</p>
+<h3 id="reliability">Reliability</h3><p>Messages persist in the queue until successfully processed. If a consumer crashes, the message is redelivered.</p>
+<h2 id="messaging-models">Messaging Models</h2><h3 id="point-to-point-queue">Point-to-Point (Queue)</h3><p>Each message is consumed by <strong>exactly one</strong> consumer. Once processed, the message is removed.</p>
+<pre><code class="language-text">Producer ──▶ [Queue] ──▶ Consumer A (gets msg1)
+                    ──▶ Consumer B (gets msg2)</code></pre><p><strong>Use case:</strong> Task distribution, job processing</p>
+<h3 id="pub-sub-publish-subscribe">Pub/Sub (Publish-Subscribe)</h3><p>Each message is delivered to <strong>all subscribers</strong>. Every consumer gets a copy.</p>
+<pre><code class="language-text">Publisher ──▶ [Topic]
+              ├──▶ Subscriber A (gets all messages)
+              ├──▶ Subscriber B (gets all messages)
+              └──▶ Subscriber C (gets all messages)</code></pre><p><strong>Use case:</strong> Event broadcasting, notifications, real-time updates</p>
+<h2 id="message-delivery-guarantees">Message Delivery Guarantees</h2><table>
+<thead>
+<tr>
+<th>Guarantee</th>
+<th>Description</th>
+<th>Trade-off</th>
+</tr>
+</thead>
+<tbody><tr>
+<td><strong>At-most-once</strong></td>
+<td>Message may be lost, never duplicated</td>
+<td>Fastest, least reliable</td>
+</tr>
+<tr>
+<td><strong>At-least-once</strong></td>
+<td>Message is never lost, may be duplicated</td>
+<td>Most common, requires idempotent consumers</td>
+</tr>
+<tr>
+<td><strong>Exactly-once</strong></td>
+<td>Message is delivered exactly once</td>
+<td>Hardest to achieve, highest overhead</td>
+</tr>
+</tbody></table>
+<p>In practice, most systems use <strong>at-least-once</strong> delivery with <strong>idempotent consumers</strong> (processing the same message twice produces the same result).</p>
+<h2 id="popular-message-queue-systems">Popular Message Queue Systems</h2><h3 id="rabbitmq">RabbitMQ</h3><p>Traditional message broker with rich routing capabilities.</p>
+<ul>
+<li>Supports multiple messaging patterns</li>
+<li>AMQP protocol</li>
+<li>Good for complex routing needs</li>
+<li>Not designed for massive throughput</li>
+</ul>
+<h3 id="apache-kafka">Apache Kafka</h3><p>Distributed <strong>event streaming platform</strong>. Not just a queue — it&#39;s a commit log.</p>
+<ul>
+<li><strong>Very high throughput</strong> (millions of messages/second)</li>
+<li>Messages are <strong>persisted</strong> and <strong>replayed</strong></li>
+<li>Consumer groups for parallel processing</li>
+<li>Great for event sourcing and stream processing</li>
+</ul>
+<h3 id="amazon-sqs">Amazon SQS</h3><p>Fully managed queue service by AWS.</p>
+<ul>
+<li>No infrastructure to manage</li>
+<li>Standard queues (at-least-once, best-effort ordering)</li>
+<li>FIFO queues (exactly-once, strict ordering)</li>
+<li>Dead letter queues for failed messages</li>
+</ul>
+<h3 id="redis-streams">Redis Streams</h3><p>Lightweight streaming data structure in Redis.</p>
+<ul>
+<li>Consumer groups like Kafka</li>
+<li>Good for simpler use cases</li>
+<li>Part of your existing Redis infrastructure</li>
+</ul>
+<h2 id="dead-letter-queues">Dead Letter Queues</h2><p>When a message fails processing repeatedly, it&#39;s moved to a <strong>dead letter queue</strong> (DLQ) instead of being retried forever.</p>
+<pre><code class="language-text">Main Queue ──▶ Consumer (fails 3 times) ──▶ Dead Letter Queue</code></pre><p>Engineers investigate DLQ messages manually or with alerting.</p>
+<h2 id="message-queues-in-system-design">Message Queues in System Design</h2><p>Common patterns in interviews:</p>
+<ol>
+<li><strong>Order processing:</strong> User places order → queue → payment service → inventory service</li>
+<li><strong>Email/notification:</strong> User action → queue → email service (async)</li>
+<li><strong>Image processing:</strong> Upload → queue → resize/thumbnail workers</li>
+<li><strong>Analytics pipeline:</strong> Events → Kafka → stream processing → data warehouse</li>
+</ol>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#what-is-a-message-queue" class="toc-link ">What Is a Message Queue?</a>
+<a href="#why-use-message-queues" class="toc-link ">Why Use Message Queues?</a>
+<a href="#decoupling" class="toc-link toc-sub">Decoupling</a>
+<a href="#async-processing" class="toc-link toc-sub">Async Processing</a>
+<a href="#load-leveling" class="toc-link toc-sub">Load Leveling</a>
+<a href="#reliability" class="toc-link toc-sub">Reliability</a>
+<a href="#messaging-models" class="toc-link ">Messaging Models</a>
+<a href="#point-to-point-queue" class="toc-link toc-sub">Point-to-Point (Queue)</a>
+<a href="#pub-sub-publish-subscribe" class="toc-link toc-sub">Pub/Sub (Publish-Subscribe)</a>
+<a href="#message-delivery-guarantees" class="toc-link ">Message Delivery Guarantees</a>
+<a href="#popular-message-queue-systems" class="toc-link ">Popular Message Queue Systems</a>
+<a href="#rabbitmq" class="toc-link toc-sub">RabbitMQ</a>
+<a href="#apache-kafka" class="toc-link toc-sub">Apache Kafka</a>
+<a href="#amazon-sqs" class="toc-link toc-sub">Amazon SQS</a>
+<a href="#redis-streams" class="toc-link toc-sub">Redis Streams</a>
+<a href="#dead-letter-queues" class="toc-link ">Dead Letter Queues</a>
+<a href="#message-queues-in-system-design" class="toc-link ">Message Queues in System Design</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

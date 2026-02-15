@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Requirements Gathering — System Design — Talha Khalil</title>
+  <meta name="description" content="Learn about Requirements Gathering in System Design.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link active">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/#blog" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/#blog" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">System Design</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/requirements-gathering.html" class="sidebar-item active">Requirements Gathering</a>
+    <a href="/system-design/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/system-design/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/system-design/apis.html" class="sidebar-item">APIs</a>
+    <a href="/system-design/databases.html" class="sidebar-item">Databases</a>
+    <a href="/system-design/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/system-design/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/system-design/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/system-design/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/system-design/caching.html" class="sidebar-item">Caching</a>
+    <a href="/system-design/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/system-design/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/system-design/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/system-design/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/system-design/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/system-design/acid-and-base.html" class="sidebar-item">ACID and BASE</a>
+    <a href="/system-design/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/system-design/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/system-design/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/system-design/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/system-design/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/system-design/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">LIBRARY</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/system-design/">SYSTEM DESIGN</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">REQUIREMENTS GATHERING</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">SYSTEM DESIGN</span>
+            <h1 class="topic-title">Requirements Gathering</h1>
+            <div class="topic-meta">
+                <span>February 14, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>2 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="why-requirements-gathering-matters">Why Requirements Gathering Matters</h2><p>System design interviews start with vague prompts: <em>Design Uber. Design Yelp. Design LeetCode.</em> Your goal is to ask questions and clarify requirements—not jump straight to solutions.</p>
+<p>You&#39;ll gather two types: <strong>functional requirements</strong> (what the system does) and <strong>non-functional requirements</strong> (how it behaves). Real systems are massive; you can&#39;t design the whole thing in an hour. Collaborate with the interviewer to pick the right subset. Skip this step and start drawing databases—you&#39;ll fail immediately.</p>
+<h2 id="functional-requirements">Functional Requirements</h2><p>What the system needs to do.</p>
+<p>For example, when designing a newsfeed:</p>
+<ul>
+<li>Get a newsfeed</li>
+<li>Post to the newsfeed</li>
+<li>Follow / unfollow users</li>
+<li>Like and comment on posts</li>
+</ul>
+<p>These are the <strong>core features</strong> the user directly interacts with. In an interview, clarify scope:</p>
+<blockquote>
+<p>&quot;Should we support images and videos, or text only?&quot;
+&quot;Do we need real-time updates or is polling acceptable?&quot;</p>
+</blockquote>
+<h3 id="tips-for-scoping">Tips for Scoping</h3><ul>
+<li>Start broad, then narrow down with the interviewer</li>
+<li>Focus on 2-3 core features rather than trying to cover everything</li>
+<li>Write them down explicitly before moving on</li>
+</ul>
+<h2 id="non-functional-requirements">Non-Functional Requirements</h2><p>System characteristics—how the system behaves:</p>
+<ul>
+<li><strong>Is it scalable?</strong> Can it handle 10x or 100x growth?</li>
+<li><strong>Is it reliable?</strong> What happens when a server goes down?</li>
+<li><strong>Is it consistent?</strong> Do all users see the same data at the same time?</li>
+<li><strong>Is it low latency?</strong> Does it respond within milliseconds?</li>
+</ul>
+<h3 id="scale-estimation">Scale Estimation</h3><p>A critical part of non-functional requirements is estimating scale:</p>
+<ul>
+<li>How many users? (DAU — daily active users)</li>
+<li>How many requests per second?</li>
+<li>How much data stored per day/year?</li>
+<li>Read-heavy or write-heavy?</li>
+</ul>
+<p><strong>Back-of-the-envelope calculations</strong> are expected. For example:</p>
+<pre><code class="language-text">100M DAU
+Each user reads 10 posts/day → 1B reads/day
+1B / 86,400 seconds ≈ ~12,000 reads/sec</code></pre><h2 id="putting-it-together">Putting It Together</h2><p>A solid requirements gathering section in a system design interview looks like:</p>
+<ol>
+<li><strong>Ask clarifying questions</strong> — don&#39;t assume</li>
+<li><strong>List functional requirements</strong> — 2-3 core features</li>
+<li><strong>List non-functional requirements</strong> — scalability, latency, availability</li>
+<li><strong>Estimate scale</strong> — users, QPS, storage</li>
+<li><strong>Get interviewer agreement</strong> — before drawing a single box</li>
+</ol>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#why-requirements-gathering-matters" class="toc-link ">Why Requirements Gathering Matters</a>
+<a href="#functional-requirements" class="toc-link ">Functional Requirements</a>
+<a href="#tips-for-scoping" class="toc-link toc-sub">Tips for Scoping</a>
+<a href="#non-functional-requirements" class="toc-link ">Non-Functional Requirements</a>
+<a href="#scale-estimation" class="toc-link toc-sub">Scale Estimation</a>
+<a href="#putting-it-together" class="toc-link ">Putting It Together</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+</html>

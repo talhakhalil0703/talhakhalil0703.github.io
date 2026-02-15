@@ -1,36 +1,190 @@
 <!DOCTYPE html>
-<html>
-<title>Talha Khalil</title>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Raleway">
-<style>
-body,h1 {font-family: "Raleway", sans-serif}
-body, html {height: 100%}
-.bgimg {
-  background-image: url('background.jpg');
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
-}
-</style>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Talha Khalil — Software Engineer</title>
+  <meta name="description" content="Personal website of Talha Khalil. System Design, Embedded Systems, and Software Engineering.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
 <body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/system-design/" class="nav-link ">Learn</a>
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/#blog" class="nav-link ">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
 
-<div class="bgimg w3-display-container w3-animate-opacity w3-text-white">
-  <div class="w3-display-topleft w3-padding-large w3-xlarge">
-    Software Engineer, E.I.T at Garmin
-    <p class="w3-large"> Masters of Computer Science Student at University of Texas at Austin </p>
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/system-design/" class="mobile-menu-link ">Learn</a>
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/#blog" class="mobile-menu-link ">Blog</a>
   </div>
-  <div class="w3-display-middle">
-    <h1 class="w3-jumbo w3-animate-top">Talha Khalil</h1>
-    <hr class="w3-border-grey" style="margin:auto;width:40%">
-    <p class="w3-large w3-center"> <a href="resume.pdf">Resume</a>, <a href="https://github.com/talhakhalil0703">Git</a> </p>
-  </div>
-  <div class="w3-display-bottomleft w3-padding-large">
-    Powered by <a href="https://www.w3schools.com/w3css/default.asp" target="_blank">w3.css</a>
-  </div>
-</div>
 
+  <!-- Main Content -->
+  <main>
+    <!-- Hero Section -->
+<section class="hero">
+    <div class="hero-inner">
+        <div class="hero-avatar-ring">
+            <div class="hero-avatar">TK</div>
+        </div>
+        <h1 class="hero-name">
+            <span class="hero-first">TALHA</span>
+            <span class="hero-last">KHALIL</span>
+        </h1>
+        <p class="hero-tagline">
+            Senior Embedded Firmware Engineer. Deep dives into system design,<br>
+            embedded systems, and software engineering for technical interviews.
+        </p>
+        <div class="hero-stats">
+            <div class="hero-stat">
+                <span class="hero-stat-icon">🔧</span>
+                <div>
+                    <span class="hero-stat-value">5+</span>
+                    <span class="hero-stat-label">YEARS EXP</span>
+                </div>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-icon">🎓</span>
+                <div>
+                    <span class="hero-stat-value">MSc</span>
+                    <span class="hero-stat-label">CS @ UT AUSTIN</span>
+                </div>
+            </div>
+            <div class="hero-stat">
+                <span class="hero-stat-icon">⚡</span>
+                <div>
+                    <span class="hero-stat-value">C/C++</span>
+                    <span class="hero-stat-label">EMBEDDED & RTOS</span>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Topic Cards -->
+<section class="topics" id="topics">
+    <div class="section-inner">
+        <div class="topics-grid">
+            <a href="/system-design/" class="topic-card">
+                <h3 class="topic-card-title">System Design</h3>
+                <p class="topic-card-desc">Architecture, scaling & reliability</p>
+                <span class="topic-card-arrow">→</span>
+            </a>
+            <a href="#" class="topic-card topic-card-soon">
+                <h3 class="topic-card-title">Operating Systems</h3>
+                <p class="topic-card-desc">OSTEP, processes, memory & scheduling</p>
+                <span class="topic-card-badge">Coming Soon</span>
+            </a>
+            <a href="#" class="topic-card topic-card-soon">
+                <h3 class="topic-card-title">Computer Networks</h3>
+                <p class="topic-card-desc">Protocols, layers & distributed systems</p>
+                <span class="topic-card-badge">Coming Soon</span>
+            </a>
+            <a href="#" class="topic-card topic-card-soon">
+                <h3 class="topic-card-title">Blog</h3>
+                <p class="topic-card-desc">Career notes & behind-the-scenes</p>
+                <span class="topic-card-badge">Coming Soon</span>
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- Projects -->
+<section class="projects" id="projects">
+    <div class="section-inner">
+        <h2 class="section-title">Projects</h2>
+        <div class="projects-grid">
+
+            <a href="https://babieslog.com" target="_blank" rel="noopener" class="project-card">
+                <div class="project-card-header">
+                    <div class="project-icon" style="background: linear-gradient(135deg, #f59e0b, #ef4444);">🍼</div>
+                    <span class="project-card-link">babieslog.com ↗</span>
+                </div>
+                <h3 class="project-card-title">BabiesLog</h3>
+                <p class="project-card-desc">A baby tracking app for logging feeds, diapers, and sleep patterns.
+                    Features real-time cloud sync, collaborative logs, and detailed analytics dashboards.</p>
+                <div class="project-card-tags">
+                    <span class="tag">React Native</span>
+                    <span class="tag">Firebase</span>
+                    <span class="tag">Expo</span>
+                </div>
+            </a>
+
+            <a href="https://resumegen.talhakhalil.ca" target="_blank" rel="noopener" class="project-card">
+                <div class="project-card-header">
+                    <div class="project-icon" style="background: linear-gradient(135deg, #6366f1, #8b5cf6);">📄</div>
+                    <span class="project-card-link">resumegen.talhakhalil.ca ↗</span>
+                </div>
+                <h3 class="project-card-title">ResumeGen</h3>
+                <p class="project-card-desc">A markdown-to-PDF resume generator with live preview, multiple themes, and
+                    auto-fit spacing. Write your resume in markdown and get a polished PDF.</p>
+                <div class="project-card-tags">
+                    <span class="tag">Python</span>
+                    <span class="tag">FastAPI</span>
+                    <span class="tag">Docker</span>
+                </div>
+            </a>
+
+        </div>
+    </div>
+</section>
+
+<!-- Resume -->
+<section class="resume-section" id="resume">
+    <div class="section-inner">
+        <h2 class="section-title">Resume</h2>
+        <div class="resume-card">
+            <div class="resume-card-content">
+                <div class="resume-info">
+                    <h3>Talha Khalil</h3>
+                    <p>Senior Embedded Firmware Engineer at GARMIN</p>
+                    <p class="resume-details">MSc Computer Science — University of Texas at Austin</p>
+                </div>
+                <div class="resume-actions">
+                    <a href="https://resumegen.talhakhalil.ca" target="_blank" rel="noopener"
+                        class="btn btn-primary">View Resume ↗</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
 </body>
 </html>
