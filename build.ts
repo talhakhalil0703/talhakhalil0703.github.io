@@ -10,21 +10,6 @@ const ASSETS_DIR = "./assets";
 const OUTPUT_DIR = "./docs";
 
 // ── Types ───────────────────────────────────────────────────────────
-interface TopicMeta {
-    slug: string;
-    title: string;
-}
-
-interface SectionMeta {
-    name: string;
-    topics: TopicMeta[];
-}
-
-interface ContentMeta {
-    pillar: string;
-    sections: SectionMeta[];
-}
-
 interface TocItem {
     id: string;
     text: string;
@@ -41,8 +26,23 @@ interface BlogPostInfo {
 }
 
 interface Frontmatter {
+    title: string;
     tags: string[];
-    [key: string]: unknown;
+}
+
+interface DiscoveredPost {
+    slug: string;
+    title: string;
+    tags: string[];
+    publishedDate: Date;
+    editedDate: Date;
+    mdPath: string;
+    body: string;
+}
+
+interface DiscoveredSection {
+    name: string;
+    posts: DiscoveredPost[];
 }
 
 // ── Helpers ─────────────────────────────────────────────────────────
@@ -82,14 +82,15 @@ function renderToc(items: TocItem[]): string {
 }
 
 function renderSidebar(
-    meta: ContentMeta,
+    pillarName: string,
+    sections: DiscoveredSection[],
     currentSlug: string,
     pillarSlug: string
 ): string {
     let html = `<div class="sidebar-pillar">PILLAR</div>\n`;
-    html += `<div class="sidebar-pillar-name">${meta.pillar}</div>\n`;
+    html += `<div class="sidebar-pillar-name">${pillarName}</div>\n`;
 
-    for (const section of meta.sections) {
+    for (const section of sections) {
         html += `<div class="sidebar-section">\n`;
         html += `  <div class="sidebar-section-header">\n`;
         html += `    <span>${section.name}</span>\n`;
@@ -97,9 +98,9 @@ function renderSidebar(
         html += `  </div>\n`;
         html += `  <div class="sidebar-section-items">\n`;
 
-        for (const topic of section.topics) {
-            const isActive = topic.slug === currentSlug;
-            html += `    <a href="/${pillarSlug}/${topic.slug}.html" class="sidebar-item${isActive ? " active" : ""}">${topic.title}</a>\n`;
+        for (const post of section.posts) {
+            const isActive = post.slug === currentSlug;
+            html += `    <a href="/${pillarSlug}/${post.slug}.html" class="sidebar-item${isActive ? " active" : ""}">${post.title}</a>\n`;
         }
 
         html += `  </div>\n`;
@@ -169,13 +170,19 @@ function getGitLastModifiedDate(filePath: string): Date {
 // ── Frontmatter Parser ──────────────────────────────────────────────
 function parseFrontmatter(content: string): { frontmatter: Frontmatter; body: string } {
     const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---\r?\n/);
-    if (!match) return { frontmatter: { tags: [] }, body: content };
+    if (!match) return { frontmatter: { title: '', tags: [] }, body: content };
 
     const raw = match[1];
     const body = content.slice(match[0].length);
-    const frontmatter: Frontmatter = { tags: [] };
+    const frontmatter: Frontmatter = { title: '', tags: [] };
 
-    // Simple YAML-like parser for tags: [Tag1, Tag2]
+    // Parse title: "Some Title" or title: Some Title
+    const titleMatch = raw.match(/title:\s*"([^"]*)"|title:\s*(.+)/);
+    if (titleMatch) {
+        frontmatter.title = (titleMatch[1] || titleMatch[2] || '').trim();
+    }
+
+    // Parse tags: [Tag1, Tag2]
     const tagsMatch = raw.match(/tags:\s*\[([^\]]*)]/);
     if (tagsMatch) {
         frontmatter.tags = tagsMatch[1].split(',').map(t => t.trim()).filter(Boolean);
@@ -252,89 +259,111 @@ async function buildTopicPages(): Promise<BlogPostInfo[]> {
 
     // Find all pillar directories
     const contentEntries = await readdir(CONTENT_DIR, { withFileTypes: true });
-    const pillarDirs = contentEntries.filter((e) => e.isDirectory());
+    const pillarDirs = contentEntries.filter((e: any) => e.isDirectory());
 
     for (const pillarDir of pillarDirs) {
         const pillarPath = join(CONTENT_DIR, pillarDir.name);
-        const metaPath = join(pillarPath, "_meta.json");
-
-        if (!(await exists(metaPath))) continue;
-
-        const meta: ContentMeta = JSON.parse(await readFile(metaPath, "utf-8"));
         const pillarSlug = pillarDir.name;
         const outputPillarDir = join(OUTPUT_DIR, pillarSlug);
         await mkdir(outputPillarDir, { recursive: true });
 
-        // Collect all posts for this pillar first (for the index page)
-        const pillarPosts: { topic: TopicMeta; section: string; tags: string[]; publishedDate: Date; editedDate: Date }[] = [];
-
-        // Build each topic page
-        for (const section of meta.sections) {
-            for (const topic of section.topics) {
-                const mdPath = join(pillarPath, `${topic.slug}.md`);
-                if (!(await exists(mdPath))) {
-                    console.log(`  ⚠ Missing: ${mdPath}`);
-                    continue;
-                }
-
-                const rawContent = await readFile(mdPath, "utf-8");
-                const { frontmatter, body: mdBody } = parseFrontmatter(rawContent);
-                const htmlContent = await marked(mdBody);
-                const toc = extractToc(htmlContent);
-                const readTime = getReadTime(mdBody);
-
-                const publishedDate = getGitCreatedDate(mdPath);
-                const editedDate = getGitLastModifiedDate(mdPath);
-                const tags = frontmatter.tags.length > 0 ? frontmatter.tags : [section.name];
-
-                pillarPosts.push({ topic, section: section.name, tags, publishedDate, editedDate });
-
-                allBlogPosts.push({
-                    slug: topic.slug,
-                    title: topic.title,
-                    pillarSlug,
-                    publishedDate,
-                    editedDate,
-                    tags,
-                });
-
-                const sidebar = renderSidebar(meta, topic.slug, pillarSlug);
-                const breadcrumb = renderBreadcrumb(
-                    meta.pillar,
-                    section.name,
-                    topic.title,
-                    pillarSlug
-                );
-                const tocHtml = renderToc(toc);
-
-                const pageContent = topicTemplate
-                    .replace("{{sidebar}}", sidebar)
-                    .replace("{{breadcrumb}}", breadcrumb)
-                    .replace("{{pillar}}", meta.pillar.toUpperCase())
-                    .replace("{{title}}", topic.title)
-                    .replace("{{date}}", formatDate(publishedDate))
-                    .replace("{{editDate}}", formatDate(editedDate))
-                    .replace("{{readTime}}", readTime)
-                    .replace("{{content}}", htmlContent)
-                    .replace("{{toc}}", tocHtml);
-
-                const fullHtml = baseTemplate
-                    .replace("{{content}}", pageContent)
-                    .replace("{{title}}", `${topic.title} — ${meta.pillar} — Talha Khalil`)
-                    .replace("{{description}}", `${topic.title} — ${meta.pillar} — Talha Khalil.`)
-                    .replace(`{{nav-active-${pillarSlug}}}`, "active")
-                    .replace(/\{\{nav-active-[^}]+\}\}/g, "");
-
-                await writeFile(join(outputPillarDir, `${topic.slug}.html`), fullHtml);
-                console.log(`  ✓ ${pillarSlug}/${topic.slug}.html`);
-            }
+        // Get pillar name from _meta.json if it exists, otherwise use folder name
+        const metaPath = join(pillarPath, "_meta.json");
+        let pillarName = pillarSlug.charAt(0).toUpperCase() + pillarSlug.slice(1);
+        if (await exists(metaPath)) {
+            const meta = JSON.parse(await readFile(metaPath, "utf-8"));
+            pillarName = meta.pillar || pillarName;
         }
 
-        // Now build pillar index with collected post data
+        // Auto-discover all .md files in this pillar
+        const files = await readdir(pillarPath);
+        const mdFiles = files.filter((f: string) => f.endsWith('.md'));
+
+        // Parse all posts
+        const discoveredPosts: DiscoveredPost[] = [];
+        for (const file of mdFiles) {
+            const mdPath = join(pillarPath, file);
+            const rawContent = await readFile(mdPath, "utf-8");
+            const { frontmatter, body } = parseFrontmatter(rawContent);
+            const slug = file.replace('.md', '');
+            // Title: from frontmatter, or derive from slug
+            const title = frontmatter.title || slug.split('-').map((w: string) => w.charAt(0).toUpperCase() + w.slice(1)).join(' ');
+            const tags = frontmatter.tags.length > 0 ? frontmatter.tags : ['General'];
+            const publishedDate = getGitCreatedDate(mdPath);
+            const editedDate = getGitLastModifiedDate(mdPath);
+
+            discoveredPosts.push({ slug, title, tags, publishedDate, editedDate, mdPath, body });
+        }
+
+        // Group posts by tag into sections (a post can appear in multiple sections)
+        const tagMap = new Map<string, DiscoveredPost[]>();
+        for (const post of discoveredPosts) {
+            for (const tag of post.tags) {
+                if (!tagMap.has(tag)) tagMap.set(tag, []);
+                tagMap.get(tag)!.push(post);
+            }
+        }
+        const sections: DiscoveredSection[] = Array.from(tagMap.entries()).map(([name, posts]) => ({ name, posts }));
+
+        // Build each topic page
+        for (const post of discoveredPosts) {
+            const htmlContent = await marked(post.body);
+            const toc = extractToc(htmlContent);
+            const readTime = getReadTime(post.body);
+            const primaryTag = post.tags[0] || 'General';
+
+            allBlogPosts.push({
+                slug: post.slug,
+                title: post.title,
+                pillarSlug,
+                publishedDate: post.publishedDate,
+                editedDate: post.editedDate,
+                tags: post.tags,
+            });
+
+            const sidebar = renderSidebar(pillarName, sections, post.slug, pillarSlug);
+            const breadcrumb = renderBreadcrumb(
+                pillarName,
+                primaryTag,
+                post.title,
+                pillarSlug
+            );
+            const tocHtml = renderToc(toc);
+
+            const pageContent = topicTemplate
+                .replace("{{sidebar}}", sidebar)
+                .replace("{{breadcrumb}}", breadcrumb)
+                .replace("{{pillar}}", pillarName.toUpperCase())
+                .replace("{{title}}", post.title)
+                .replace("{{date}}", formatDate(post.publishedDate))
+                .replace("{{editDate}}", formatDate(post.editedDate))
+                .replace("{{readTime}}", readTime)
+                .replace("{{content}}", htmlContent)
+                .replace("{{toc}}", tocHtml);
+
+            const fullHtml = baseTemplate
+                .replace("{{content}}", pageContent)
+                .replace("{{title}}", `${post.title} — ${pillarName} — Talha Khalil`)
+                .replace("{{description}}", `${post.title} — ${pillarName} — Talha Khalil.`)
+                .replace(`{{nav-active-${pillarSlug}}}`, "active")
+                .replace(/\{\{nav-active-[^}]+\}\}/g, "");
+
+            await writeFile(join(outputPillarDir, `${post.slug}.html`), fullHtml);
+            console.log(`  ✓ ${pillarSlug}/${post.slug}.html`);
+        }
+
+        // Build pillar index with discovered post data
+        const pillarPosts = discoveredPosts.map(p => ({
+            topic: { slug: p.slug, title: p.title },
+            section: p.tags[0] || 'General',
+            tags: p.tags,
+            publishedDate: p.publishedDate,
+            editedDate: p.editedDate,
+        }));
         const pillarIndexHtml = baseTemplate
-            .replace("{{content}}", buildPillarIndex(meta, pillarSlug, pillarPosts))
-            .replace("{{title}}", `${meta.pillar} — Talha Khalil`)
-            .replace("{{description}}", `${meta.pillar} — Talha Khalil's posts and articles.`)
+            .replace("{{content}}", buildPillarIndex(pillarName, pillarSlug, sections, pillarPosts))
+            .replace("{{title}}", `${pillarName} — Talha Khalil`)
+            .replace("{{description}}", `${pillarName} — Talha Khalil's posts and articles.`)
             .replace(`{{nav-active-${pillarSlug}}}`, "active")
             .replace(/\{\{nav-active-[^}]+\}\}/g, "");
         await writeFile(join(outputPillarDir, "index.html"), pillarIndexHtml);
@@ -345,17 +374,18 @@ async function buildTopicPages(): Promise<BlogPostInfo[]> {
 }
 
 function buildPillarIndex(
-    meta: ContentMeta,
+    pillarName: string,
     pillarSlug: string,
-    posts: { topic: TopicMeta; section: string; tags: string[]; publishedDate: Date; editedDate: Date }[]
+    sections: DiscoveredSection[],
+    posts: { topic: { slug: string; title: string }; section: string; tags: string[]; publishedDate: Date; editedDate: Date }[]
 ): string {
     // Collect all unique tags
     const allTags = new Set<string>();
     posts.forEach(p => p.tags.forEach(t => allTags.add(t)));
 
     let html = `<div class="pillar-index">`;
-    html += `<h1>${meta.pillar}</h1>`;
-    html += `<p class="pillar-description">Explore topics in ${meta.pillar}.</p>`;
+    html += `<h1>${pillarName}</h1>`;
+    html += `<p class="pillar-description">Explore topics in ${pillarName}.</p>`;
 
     // Sort/Filter controls
     html += `<div class="blog-controls">`;
@@ -377,15 +407,13 @@ function buildPillarIndex(
 
     // Topic view (grouped by section, default)
     html += `<div class="blog-topic-view">`;
-    for (const section of meta.sections) {
-        const sectionPosts = posts.filter(p => p.section === section.name);
-        if (sectionPosts.length === 0) continue;
+    for (const section of sections) {
         html += `<div class="pillar-section" data-section="${section.name}">`;
         html += `<h2>${section.name}</h2>`;
         html += `<div class="pillar-topics-grid">`;
-        for (const post of sectionPosts) {
-            html += `<a href="/${pillarSlug}/${post.topic.slug}.html" class="pillar-topic-card" data-date="${post.publishedDate.toISOString()}" data-tags="${post.tags.join(',')}">
-        <span class="pillar-topic-title">${post.topic.title}</span>
+        for (const post of section.posts) {
+            html += `<a href="/${pillarSlug}/${post.slug}.html" class="pillar-topic-card" data-date="${post.publishedDate.toISOString()}" data-tags="${post.tags.join(',')}">
+        <span class="pillar-topic-title">${post.title}</span>
         <span class="pillar-topic-date">${formatDate(post.publishedDate)}</span>
         <span class="pillar-topic-arrow">→</span>
       </a>`;
