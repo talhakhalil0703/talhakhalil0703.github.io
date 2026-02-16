@@ -9,6 +9,104 @@
                     "title": "First Test"
                 }
             ]
+        },
+        {
+            "name": "Fundamentals",
+            "topics": [
+                {
+                    "slug": "requirements-gathering",
+                    "title": "Requirements Gathering"
+                },
+                {
+                    "slug": "system-characteristics",
+                    "title": "System Characteristics"
+                },
+                {
+                    "slug": "client-server-architecture",
+                    "title": "Simple Client-Server Architecture"
+                },
+                {
+                    "slug": "apis",
+                    "title": "APIs"
+                },
+                {
+                    "slug": "databases",
+                    "title": "Databases"
+                },
+                {
+                    "slug": "vertical-vs-horizontal-scaling",
+                    "title": "Vertical Scaling versus Horizontal Scaling"
+                },
+                {
+                    "slug": "load-balancer",
+                    "title": "Load Balancer"
+                },
+                {
+                    "slug": "data-partitioning",
+                    "title": "Data Partitioning"
+                },
+                {
+                    "slug": "database-replication",
+                    "title": "Database Replication"
+                },
+                {
+                    "slug": "caching",
+                    "title": "Caching"
+                },
+                {
+                    "slug": "stateless-vs-stateful",
+                    "title": "Stateless vs Stateful Web Servers"
+                },
+                {
+                    "slug": "data-centers-and-regions",
+                    "title": "Data Centers and Regions"
+                },
+                {
+                    "slug": "message-queues",
+                    "title": "Message Queues"
+                },
+                {
+                    "slug": "batch-vs-stream-processing",
+                    "title": "Batch vs Stream Processing"
+                },
+                {
+                    "slug": "cap-theorem",
+                    "title": "CAP Theorem"
+                },
+                {
+                    "slug": "acid-and-base",
+                    "title": "ACID and BASE"
+                },
+                {
+                    "slug": "observability-and-dx",
+                    "title": "Observability and Developer Experience"
+                }
+            ]
+        },
+        {
+            "name": "Embedded Systems Design",
+            "topics": [
+                {
+                    "slug": "rtos-design",
+                    "title": "RTOS Design & Task Scheduling"
+                },
+                {
+                    "slug": "embedded-memory-management",
+                    "title": "Memory Management in Embedded Systems"
+                },
+                {
+                    "slug": "communication-protocols",
+                    "title": "Communication Protocols (I2C, SPI, UART, CAN)"
+                },
+                {
+                    "slug": "ota-firmware-updates",
+                    "title": "OTA Firmware Updates"
+                },
+                {
+                    "slug": "power-management",
+                    "title": "Power Management & Energy-Efficient Design"
+                }
+            ]
         }
     ]
 }

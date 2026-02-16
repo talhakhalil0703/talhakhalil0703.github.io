@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First Test — Blog — Talha Khalil</title>
-  <meta name="description" content="First Test — Blog — Talha Khalil.">
+  <title>Requirements Gathering — Blog — Talha Khalil</title>
+  <meta name="description" content="Requirements Gathering — Blog — Talha Khalil.">
   <meta name="author" content="Talha Khalil">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@
     <button class="sidebar-toggle" aria-label="Toggle section">−</button>
   </div>
   <div class="sidebar-section-items">
-    <a href="/blog/first-test.html" class="sidebar-item active">First Test</a>
+    <a href="/blog/first-test.html" class="sidebar-item">First Test</a>
   </div>
 </div>
 <div class="sidebar-section">
@@ -67,7 +67,7 @@
     <button class="sidebar-toggle" aria-label="Toggle section">−</button>
   </div>
   <div class="sidebar-section-items">
-    <a href="/blog/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/blog/requirements-gathering.html" class="sidebar-item active">Requirements Gathering</a>
     <a href="/blog/system-characteristics.html" class="sidebar-item">System Characteristics</a>
     <a href="/blog/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
     <a href="/blog/apis.html" class="sidebar-item">APIs</a>
@@ -109,24 +109,68 @@
     <span class="breadcrumb-sep">›</span>
     <a href="/blog/">BLOG</a>
     <span class="breadcrumb-sep">›</span>
-    <span>2026</span>
+    <span>FUNDAMENTALS</span>
     <span class="breadcrumb-sep">›</span>
-    <span class="breadcrumb-current">FIRST TEST</span>
+    <span class="breadcrumb-current">REQUIREMENTS GATHERING</span>
   </nav>
         <div class="topic-header">
             <span class="topic-pillar-label">BLOG</span>
-            <h1 class="topic-title">First Test</h1>
+            <h1 class="topic-title">Requirements Gathering</h1>
             <div class="topic-meta">
-                <span>February 14, 2026</span>
+                <span>February 15, 2026</span>
                 <span class="topic-meta-sep">·</span>
-                <span>Edited February 14, 2026</span>
+                <span>Edited February 15, 2026</span>
                 <span class="topic-meta-sep">·</span>
-                <span>1 min read</span>
+                <span>2 min read</span>
             </div>
         </div>
         <div class="topic-body">
-            <h1 id="first-test">First Test</h1><p>Test to see how the blog works, pending topics and content in regards to everything present on this website.</p>
-<h2 id="test">Test</h2><h3 id="test">Test</h3><h4 id="test">Test</h4><h5 id="test">Test</h5><h6 id="test">Test</h6>
+            <h2 id="why-requirements-gathering-matters">Why Requirements Gathering Matters</h2><p>System design interviews start with vague prompts: <em>Design Uber. Design Yelp. Design LeetCode.</em> Your goal is to ask questions and clarify requirements—not jump straight to solutions.</p>
+<p>You&#39;ll gather two types: <strong>functional requirements</strong> (what the system does) and <strong>non-functional requirements</strong> (how it behaves). Real systems are massive; you can&#39;t design the whole thing in an hour. Collaborate with the interviewer to pick the right subset. Skip this step and start drawing databases—you&#39;ll fail immediately.</p>
+<h2 id="functional-requirements">Functional Requirements</h2><p>What the system needs to do.</p>
+<p>For example, when designing a newsfeed:</p>
+<ul>
+<li>Get a newsfeed</li>
+<li>Post to the newsfeed</li>
+<li>Follow / unfollow users</li>
+<li>Like and comment on posts</li>
+</ul>
+<p>These are the <strong>core features</strong> the user directly interacts with. In an interview, clarify scope:</p>
+<blockquote>
+<p>&quot;Should we support images and videos, or text only?&quot;
+&quot;Do we need real-time updates or is polling acceptable?&quot;</p>
+</blockquote>
+<h3 id="tips-for-scoping">Tips for Scoping</h3><ul>
+<li>Start broad, then narrow down with the interviewer</li>
+<li>Focus on 2-3 core features rather than trying to cover everything</li>
+<li>Write them down explicitly before moving on</li>
+</ul>
+<h2 id="non-functional-requirements">Non-Functional Requirements</h2><p>System characteristics—how the system behaves:</p>
+<ul>
+<li><strong>Is it scalable?</strong> Can it handle 10x or 100x growth?</li>
+<li><strong>Is it reliable?</strong> What happens when a server goes down?</li>
+<li><strong>Is it consistent?</strong> Do all users see the same data at the same time?</li>
+<li><strong>Is it low latency?</strong> Does it respond within milliseconds?</li>
+</ul>
+<h3 id="scale-estimation">Scale Estimation</h3><p>A critical part of non-functional requirements is estimating scale:</p>
+<ul>
+<li>How many users? (DAU — daily active users)</li>
+<li>How many requests per second?</li>
+<li>How much data stored per day/year?</li>
+<li>Read-heavy or write-heavy?</li>
+</ul>
+<p><strong>Back-of-the-envelope calculations</strong> are expected. For example:</p>
+<pre><code class="language-text">100M DAU
+Each user reads 10 posts/day → 1B reads/day
+1B / 86,400 seconds ≈ ~12,000 reads/sec</code></pre><h2 id="putting-it-together">Putting It Together</h2><p>A solid requirements gathering section in a system design interview looks like:</p>
+<ol>
+<li><strong>Ask clarifying questions</strong> — don&#39;t assume</li>
+<li><strong>List functional requirements</strong> — 2-3 core features</li>
+<li><strong>List non-functional requirements</strong> — scalability, latency, availability</li>
+<li><strong>Estimate scale</strong> — users, QPS, storage</li>
+<li><strong>Get interviewer agreement</strong> — before drawing a single box</li>
+</ol>
+
         </div>
     </article>
 
@@ -134,8 +178,12 @@
     <aside class="toc">
         <div class="toc-header">IN THIS ARTICLE</div>
         <div class="toc-links">
-            <a href="#test" class="toc-link ">Test</a>
-<a href="#test" class="toc-link toc-sub">Test</a>
+            <a href="#why-requirements-gathering-matters" class="toc-link ">Why Requirements Gathering Matters</a>
+<a href="#functional-requirements" class="toc-link ">Functional Requirements</a>
+<a href="#tips-for-scoping" class="toc-link toc-sub">Tips for Scoping</a>
+<a href="#non-functional-requirements" class="toc-link ">Non-Functional Requirements</a>
+<a href="#scale-estimation" class="toc-link toc-sub">Scale Estimation</a>
+<a href="#putting-it-together" class="toc-link ">Putting It Together</a>
         </div>
     </aside>
 </div>

@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First Test — Blog — Talha Khalil</title>
-  <meta name="description" content="First Test — Blog — Talha Khalil.">
+  <title>System Characteristics — Blog — Talha Khalil</title>
+  <meta name="description" content="System Characteristics — Blog — Talha Khalil.">
   <meta name="author" content="Talha Khalil">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@
     <button class="sidebar-toggle" aria-label="Toggle section">−</button>
   </div>
   <div class="sidebar-section-items">
-    <a href="/blog/first-test.html" class="sidebar-item active">First Test</a>
+    <a href="/blog/first-test.html" class="sidebar-item">First Test</a>
   </div>
 </div>
 <div class="sidebar-section">
@@ -68,7 +68,7 @@
   </div>
   <div class="sidebar-section-items">
     <a href="/blog/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
-    <a href="/blog/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/blog/system-characteristics.html" class="sidebar-item active">System Characteristics</a>
     <a href="/blog/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
     <a href="/blog/apis.html" class="sidebar-item">APIs</a>
     <a href="/blog/databases.html" class="sidebar-item">Databases</a>
@@ -109,24 +109,102 @@
     <span class="breadcrumb-sep">›</span>
     <a href="/blog/">BLOG</a>
     <span class="breadcrumb-sep">›</span>
-    <span>2026</span>
+    <span>FUNDAMENTALS</span>
     <span class="breadcrumb-sep">›</span>
-    <span class="breadcrumb-current">FIRST TEST</span>
+    <span class="breadcrumb-current">SYSTEM CHARACTERISTICS</span>
   </nav>
         <div class="topic-header">
             <span class="topic-pillar-label">BLOG</span>
-            <h1 class="topic-title">First Test</h1>
+            <h1 class="topic-title">System Characteristics</h1>
             <div class="topic-meta">
-                <span>February 14, 2026</span>
+                <span>February 15, 2026</span>
                 <span class="topic-meta-sep">·</span>
-                <span>Edited February 14, 2026</span>
+                <span>Edited February 15, 2026</span>
                 <span class="topic-meta-sep">·</span>
-                <span>1 min read</span>
+                <span>2 min read</span>
             </div>
         </div>
         <div class="topic-body">
-            <h1 id="first-test">First Test</h1><p>Test to see how the blog works, pending topics and content in regards to everything present on this website.</p>
-<h2 id="test">Test</h2><h3 id="test">Test</h3><h4 id="test">Test</h4><h5 id="test">Test</h5><h6 id="test">Test</h6>
+            <h2 id="what-are-system-characteristics">What Are System Characteristics?</h2><p>System characteristics define the <strong>quality attributes</strong> of a distributed system. When someone asks &quot;design X at scale,&quot; they&#39;re really asking about these properties. Understanding the tradeoffs between them is the foundation of system design.</p>
+<h2 id="scalability">Scalability</h2><p>The ability of a system to handle increased load by adding resources.</p>
+<ul>
+<li><strong>Vertical scaling</strong> — add more power to a single machine (bigger CPU, more RAM)</li>
+<li><strong>Horizontal scaling</strong> — add more machines to distribute the load</li>
+</ul>
+<p>A scalable system can grow gracefully. An unscalable system falls over when traffic doubles.</p>
+<h3 id="key-metrics">Key Metrics</h3><ul>
+<li>Requests per second (RPS)</li>
+<li>Concurrent connections</li>
+<li>Data volume growth rate</li>
+</ul>
+<h2 id="availability">Availability</h2><p>The percentage of time a system is operational and accessible.</p>
+<p>Measured in &quot;nines&quot;:</p>
+<table>
+<thead>
+<tr>
+<th>Availability</th>
+<th>Downtime/year</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>99% (two nines)</td>
+<td>3.65 days</td>
+</tr>
+<tr>
+<td>99.9% (three nines)</td>
+<td>8.76 hours</td>
+</tr>
+<tr>
+<td>99.99% (four nines)</td>
+<td>52.6 minutes</td>
+</tr>
+<tr>
+<td>99.999% (five nines)</td>
+<td>5.26 minutes</td>
+</tr>
+</tbody></table>
+<p>High availability is achieved through:</p>
+<ul>
+<li><strong>Redundancy</strong> — no single point of failure</li>
+<li><strong>Failover mechanisms</strong> — automatic switching to backup systems</li>
+<li><strong>Health checks</strong> — continuous monitoring</li>
+</ul>
+<h2 id="reliability">Reliability</h2><p>A reliable system produces correct results even under adverse conditions.</p>
+<p>Reliability ≠ availability. A system can be available but unreliable (it responds, but with wrong data). Key strategies:</p>
+<ul>
+<li>Data replication across nodes</li>
+<li>Checksums and validation</li>
+<li>Retry logic with idempotency</li>
+<li>Graceful degradation</li>
+</ul>
+<h2 id="consistency">Consistency</h2><p>Every read receives the most recent write or an error.</p>
+<p>Three consistency models:</p>
+<ul>
+<li><strong>Strong consistency</strong> — reads always reflect the latest write (e.g., bank transactions)</li>
+<li><strong>Eventual consistency</strong> — reads may be stale temporarily but will converge (e.g., social media likes)</li>
+<li><strong>Causal consistency</strong> — operations that are causally related are seen in order</li>
+</ul>
+<h2 id="latency-vs-throughput">Latency vs Throughput</h2><p><strong>Latency</strong> is the time it takes to process a single request (milliseconds). <strong>Throughput</strong> is the number of requests processed per unit time (requests/second).</p>
+<pre><code class="language-text">Low latency + high throughput = ideal
+Low latency + low throughput = bottleneck somewhere
+High latency + high throughput = batch processing system</code></pre><p>Optimizing one often comes at the cost of the other. Adding a cache improves latency but may reduce consistency.</p>
+<h2 id="partition-tolerance">Partition Tolerance</h2><p>The system continues to operate despite network partitions (communication failures between nodes).</p>
+<p>In distributed systems, network partitions <strong>will happen</strong>. The question is: when they do, do you sacrifice consistency or availability? This is the essence of the CAP theorem.</p>
+<h2 id="durability">Durability</h2><p>Once data is committed, it persists even through system failures.</p>
+<p>Achieved through:</p>
+<ul>
+<li>Write-ahead logs (WAL)</li>
+<li>Replication to multiple disks/nodes</li>
+<li>Periodic snapshots and backups</li>
+</ul>
+<h2 id="the-tradeoff-game">The Tradeoff Game</h2><p>No system gets all characteristics at maximum. System design is about making <strong>informed tradeoffs</strong>:</p>
+<ul>
+<li>E-commerce checkout → strong consistency + high availability</li>
+<li>Social media feed → eventual consistency + low latency</li>
+<li>Banking → strong consistency + durability</li>
+<li>IoT sensor data → high throughput + partition tolerance</li>
+</ul>
+
         </div>
     </article>
 
@@ -134,8 +212,16 @@
     <aside class="toc">
         <div class="toc-header">IN THIS ARTICLE</div>
         <div class="toc-links">
-            <a href="#test" class="toc-link ">Test</a>
-<a href="#test" class="toc-link toc-sub">Test</a>
+            <a href="#what-are-system-characteristics" class="toc-link ">What Are System Characteristics?</a>
+<a href="#scalability" class="toc-link ">Scalability</a>
+<a href="#key-metrics" class="toc-link toc-sub">Key Metrics</a>
+<a href="#availability" class="toc-link ">Availability</a>
+<a href="#reliability" class="toc-link ">Reliability</a>
+<a href="#consistency" class="toc-link ">Consistency</a>
+<a href="#latency-vs-throughput" class="toc-link ">Latency vs Throughput</a>
+<a href="#partition-tolerance" class="toc-link ">Partition Tolerance</a>
+<a href="#durability" class="toc-link ">Durability</a>
+<a href="#the-tradeoff-game" class="toc-link ">The Tradeoff Game</a>
         </div>
     </aside>
 </div>

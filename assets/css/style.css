@@ -246,11 +246,25 @@ main {
 }
 
 @keyframes ring-rotate {
-  0% { background: linear-gradient(0deg, var(--accent), #22d3ee, var(--accent)); }
-  25% { background: linear-gradient(90deg, var(--accent), #22d3ee, var(--accent)); }
-  50% { background: linear-gradient(180deg, var(--accent), #22d3ee, var(--accent)); }
-  75% { background: linear-gradient(270deg, var(--accent), #22d3ee, var(--accent)); }
-  100% { background: linear-gradient(360deg, var(--accent), #22d3ee, var(--accent)); }
+  0% {
+    background: linear-gradient(0deg, var(--accent), #22d3ee, var(--accent));
+  }
+
+  25% {
+    background: linear-gradient(90deg, var(--accent), #22d3ee, var(--accent));
+  }
+
+  50% {
+    background: linear-gradient(180deg, var(--accent), #22d3ee, var(--accent));
+  }
+
+  75% {
+    background: linear-gradient(270deg, var(--accent), #22d3ee, var(--accent));
+  }
+
+  100% {
+    background: linear-gradient(360deg, var(--accent), #22d3ee, var(--accent));
+  }
 }
 
 .hero-avatar {
@@ -356,31 +370,31 @@ main {
   color: var(--text-primary);
 }
 
-/* ── Topics Grid ────────────────────────────────────────────── */
-.topics {
+/* ── Recent Posts ───────────────────────────────────────────── */
+.recent-posts {
   padding: 40px 0 80px;
 }
 
-.topics-grid {
+.recent-posts-grid {
   display: grid;
-  grid-template-columns: repeat(2, 1fr);
+  grid-template-columns: repeat(3, 1fr);
   gap: 16px;
+  margin-bottom: 32px;
 }
 
-.topic-card {
-  padding: 28px;
+.recent-post-card {
+  padding: 24px;
   background: var(--bg-card);
   border: 1px solid var(--border);
   border-radius: var(--radius-md);
   transition: all var(--transition-base);
   position: relative;
-  overflow: hidden;
   display: flex;
   flex-direction: column;
   cursor: pointer;
 }
 
-.topic-card::before {
+.recent-post-card::before {
   content: '';
   position: absolute;
   top: 0;
@@ -392,58 +406,61 @@ main {
   transition: opacity var(--transition-base);
 }
 
-.topic-card:hover {
+.recent-post-card:hover {
   border-color: rgba(74, 222, 128, 0.2);
   background: var(--bg-card-hover);
   transform: translateY(-3px);
 }
 
-.topic-card:hover::before {
+.recent-post-card:hover::before {
   opacity: 1;
 }
 
-.topic-card-title {
-  font-size: 18px;
+.recent-post-date {
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  letter-spacing: 0.5px;
+  margin-bottom: 8px;
+}
+
+.recent-post-title {
+  font-size: 16px;
   font-weight: 600;
-  margin-bottom: 6px;
   color: var(--text-primary);
+  line-height: 1.4;
+  flex: 1;
 }
 
-.topic-card-desc {
-  font-size: 14px;
-  color: var(--text-secondary);
-}
-
-.topic-card-arrow {
+.recent-post-arrow {
   position: absolute;
-  top: 28px;
-  right: 28px;
-  font-size: 18px;
+  top: 24px;
+  right: 24px;
+  font-size: 16px;
   color: var(--text-tertiary);
   transition: all var(--transition-fast);
 }
 
-.topic-card:hover .topic-card-arrow {
+.recent-post-card:hover .recent-post-arrow {
   color: var(--accent);
   transform: translateX(4px);
 }
 
-.topic-card-soon {
-  opacity: 0.5;
-  pointer-events: none;
+.recent-posts-footer {
+  text-align: center;
 }
 
-.topic-card-badge {
-  display: inline-block;
-  margin-top: 12px;
-  padding: 4px 10px;
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 1px;
-  color: var(--text-tertiary);
+.btn-secondary {
+  background: var(--bg-card);
+  color: var(--text-secondary);
   border: 1px solid var(--border);
-  border-radius: var(--radius-sm);
-  text-transform: uppercase;
+}
+
+.btn-secondary:hover {
+  background: var(--bg-card-hover);
+  color: var(--text-primary);
+  border-color: rgba(74, 222, 128, 0.2);
+  transform: translateY(-2px);
 }
 
 /* ── Projects ───────────────────────────────────────────────── */
@@ -959,7 +976,112 @@ main {
 .pillar-description {
   font-size: 16px;
   color: var(--text-secondary);
-  margin-bottom: 60px;
+  margin-bottom: 32px;
+}
+
+/* ── Blog Controls ─────────────────────────────────────────── */
+.blog-controls {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 40px;
+  flex-wrap: wrap;
+}
+
+.blog-view-toggle,
+.blog-sort-toggle {
+  display: flex;
+  background: var(--bg-card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+  overflow: hidden;
+}
+
+.blog-view-btn,
+.blog-sort-btn {
+  padding: 8px 18px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--text-secondary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.blog-view-btn:hover,
+.blog-sort-btn:hover {
+  color: var(--text-primary);
+}
+
+.blog-view-btn.active,
+.blog-sort-btn.active {
+  background: var(--accent);
+  color: #0a0a0f;
+  font-weight: 600;
+}
+
+.blog-tag-filter {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.blog-tag-btn {
+  padding: 6px 14px;
+  font-size: 12px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--text-tertiary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-xl);
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.blog-tag-btn:hover {
+  color: var(--text-primary);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+.blog-tag-btn.active {
+  color: #0a0a0f;
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+/* ── Pillar Topic Card Extras ──────────────────────────────── */
+.pillar-topic-info {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  flex: 1;
+  min-width: 0;
+}
+
+.pillar-topic-date {
+  font-size: 12px;
+  color: var(--text-tertiary);
+  white-space: nowrap;
+  margin-right: 16px;
+}
+
+.pillar-topic-tags {
+  display: flex;
+  gap: 6px;
+  flex-wrap: wrap;
+}
+
+.pillar-tag {
+  padding: 2px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--text-tertiary);
+  background: var(--bg-surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
 }
 
 .pillar-section {
@@ -982,7 +1104,7 @@ main {
 .pillar-topic-card {
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  gap: 12px;
   padding: 16px 20px;
   background: var(--bg-card);
   border: 1px solid var(--border);
@@ -1000,6 +1122,7 @@ main {
   font-size: 15px;
   font-weight: 500;
   color: var(--text-secondary);
+  flex: 1;
 }
 
 .pillar-topic-card:hover .pillar-topic-title {
@@ -1085,7 +1208,7 @@ main {
     align-items: center;
   }
 
-  .topics-grid,
+  .recent-posts-grid,
   .projects-grid {
     grid-template-columns: 1fr;
   }

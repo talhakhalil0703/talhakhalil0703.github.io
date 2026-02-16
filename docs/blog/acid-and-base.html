@@ -1,0 +1,306 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ACID and BASE — Blog — Talha Khalil</title>
+  <meta name="description" content="ACID and BASE — Blog — Talha Khalil.">
+  <meta name="author" content="Talha Khalil">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="/assets/css/style.css">
+</head>
+
+<body>
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="navbar-inner">
+      <a href="/" class="navbar-brand">
+        <span class="navbar-avatar">TK</span>
+        <span class="navbar-name">Talha Khalil</span>
+      </a>
+      <div class="navbar-links">
+        <a href="/#projects" class="nav-link ">Projects</a>
+        <a href="/#resume" class="nav-link ">Resume</a>
+        <a href="/blog/" class="nav-link active">Blog</a>
+      </div>
+      <button class="navbar-menu-btn" aria-label="Toggle menu">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+          <line x1="3" y1="6" x2="21" y2="6"></line>
+          <line x1="3" y1="12" x2="21" y2="12"></line>
+          <line x1="3" y1="18" x2="21" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+  </nav>
+
+  <!-- Mobile Menu -->
+  <div class="mobile-menu">
+    <a href="/#projects" class="mobile-menu-link ">Projects</a>
+    <a href="/#resume" class="mobile-menu-link ">Resume</a>
+    <a href="/blog/" class="mobile-menu-link ">Blog</a>
+  </div>
+
+  <!-- Main Content -->
+  <main>
+    <div class="topic-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-pillar">PILLAR</div>
+<div class="sidebar-pillar-name">Blog</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>2026</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/blog/first-test.html" class="sidebar-item">First Test</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Fundamentals</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/blog/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
+    <a href="/blog/system-characteristics.html" class="sidebar-item">System Characteristics</a>
+    <a href="/blog/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/blog/apis.html" class="sidebar-item">APIs</a>
+    <a href="/blog/databases.html" class="sidebar-item">Databases</a>
+    <a href="/blog/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
+    <a href="/blog/load-balancer.html" class="sidebar-item">Load Balancer</a>
+    <a href="/blog/data-partitioning.html" class="sidebar-item">Data Partitioning</a>
+    <a href="/blog/database-replication.html" class="sidebar-item">Database Replication</a>
+    <a href="/blog/caching.html" class="sidebar-item">Caching</a>
+    <a href="/blog/stateless-vs-stateful.html" class="sidebar-item">Stateless vs Stateful Web Servers</a>
+    <a href="/blog/data-centers-and-regions.html" class="sidebar-item">Data Centers and Regions</a>
+    <a href="/blog/message-queues.html" class="sidebar-item">Message Queues</a>
+    <a href="/blog/batch-vs-stream-processing.html" class="sidebar-item">Batch vs Stream Processing</a>
+    <a href="/blog/cap-theorem.html" class="sidebar-item">CAP Theorem</a>
+    <a href="/blog/acid-and-base.html" class="sidebar-item active">ACID and BASE</a>
+    <a href="/blog/observability-and-dx.html" class="sidebar-item">Observability and Developer Experience</a>
+  </div>
+</div>
+<div class="sidebar-section">
+  <div class="sidebar-section-header">
+    <span>Embedded Systems Design</span>
+    <button class="sidebar-toggle" aria-label="Toggle section">−</button>
+  </div>
+  <div class="sidebar-section-items">
+    <a href="/blog/rtos-design.html" class="sidebar-item">RTOS Design & Task Scheduling</a>
+    <a href="/blog/embedded-memory-management.html" class="sidebar-item">Memory Management in Embedded Systems</a>
+    <a href="/blog/communication-protocols.html" class="sidebar-item">Communication Protocols (I2C, SPI, UART, CAN)</a>
+    <a href="/blog/ota-firmware-updates.html" class="sidebar-item">OTA Firmware Updates</a>
+    <a href="/blog/power-management.html" class="sidebar-item">Power Management & Energy-Efficient Design</a>
+  </div>
+</div>
+
+    </aside>
+
+    <!-- Content -->
+    <article class="topic-content">
+        <nav class="breadcrumb">
+    <a href="/">HOME</a>
+    <span class="breadcrumb-sep">›</span>
+    <a href="/blog/">BLOG</a>
+    <span class="breadcrumb-sep">›</span>
+    <span>FUNDAMENTALS</span>
+    <span class="breadcrumb-sep">›</span>
+    <span class="breadcrumb-current">ACID AND BASE</span>
+  </nav>
+        <div class="topic-header">
+            <span class="topic-pillar-label">BLOG</span>
+            <h1 class="topic-title">ACID and BASE</h1>
+            <div class="topic-meta">
+                <span>February 15, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>Edited February 15, 2026</span>
+                <span class="topic-meta-sep">·</span>
+                <span>3 min read</span>
+            </div>
+        </div>
+        <div class="topic-body">
+            <h2 id="two-models-for-data-guarantees">Two Models for Data Guarantees</h2><p>ACID and BASE represent two different philosophies for how databases handle transactions and consistency.</p>
+<h2 id="acid">ACID</h2><p>Traditional relational database guarantees. Prioritizes <strong>correctness</strong>.</p>
+<h3 id="atomicity">Atomicity</h3><p>A transaction is <strong>all or nothing</strong>. If any part fails, the entire transaction is rolled back.</p>
+<pre><code class="language-sql">BEGIN TRANSACTION;
+  UPDATE accounts SET balance = balance - 100 WHERE id = 1;
+  UPDATE accounts SET balance = balance + 100 WHERE id = 2;
+COMMIT;
+-- If either UPDATE fails, neither happens</code></pre><h3 id="consistency">Consistency</h3><p>A transaction brings the database from one <strong>valid state</strong> to another. All constraints (foreign keys, unique indexes, checks) are enforced.</p>
+<h3 id="isolation">Isolation</h3><p>Concurrent transactions don&#39;t interfere with each other. Each transaction sees a consistent snapshot of the database.</p>
+<p><strong>Isolation levels (from weakest to strongest):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Level</th>
+<th>Dirty Reads</th>
+<th>Non-Repeatable Reads</th>
+<th>Phantom Reads</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Read Uncommitted</td>
+<td>✓</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Read Committed</td>
+<td>✗</td>
+<td>✓</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Repeatable Read</td>
+<td>✗</td>
+<td>✗</td>
+<td>✓</td>
+</tr>
+<tr>
+<td>Serializable</td>
+<td>✗</td>
+<td>✗</td>
+<td>✗</td>
+</tr>
+</tbody></table>
+<p>Higher isolation = more correct but slower (more locking).</p>
+<h3 id="durability">Durability</h3><p>Once a transaction is committed, it <strong>survives</strong> system crashes. Data is written to non-volatile storage (disk, WAL).</p>
+<h2 id="base">BASE</h2><p>NoSQL/distributed database philosophy. Prioritizes <strong>availability</strong> and <strong>performance</strong>.</p>
+<h3 id="basically-available">Basically Available</h3><p>The system <strong>guarantees availability</strong> according to the CAP theorem. Every request gets a response, even during partial failures.</p>
+<h3 id="soft-state">Soft State</h3><p>The system&#39;s state <strong>may change over time</strong>, even without new input, as data propagates between replicas.</p>
+<h3 id="eventually-consistent">Eventually Consistent</h3><p>If no new updates are made, all replicas will <strong>eventually</strong> converge to the same value. There&#39;s a window where reads may return stale data.</p>
+<h2 id="comparison">Comparison</h2><table>
+<thead>
+<tr>
+<th>Property</th>
+<th>ACID</th>
+<th>BASE</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Consistency</td>
+<td>Strong</td>
+<td>Eventual</td>
+</tr>
+<tr>
+<td>Availability</td>
+<td>May sacrifice for correctness</td>
+<td>Prioritized</td>
+</tr>
+<tr>
+<td>Complexity</td>
+<td>Simpler mental model</td>
+<td>Requires handling inconsistency</td>
+</tr>
+<tr>
+<td>Performance</td>
+<td>Lower (locking overhead)</td>
+<td>Higher (no coordination)</td>
+</tr>
+<tr>
+<td>Scaling</td>
+<td>Vertical (primarily)</td>
+<td>Horizontal (native)</td>
+</tr>
+<tr>
+<td>Use case</td>
+<td>Financial, transactional</td>
+<td>Social media, analytics</td>
+</tr>
+</tbody></table>
+<h2 id="acid-in-practice">ACID in Practice</h2><h3 id="traditional-rdbms">Traditional RDBMS</h3><p>PostgreSQL, MySQL, Oracle — ACID by default.</p>
+<h3 id="distributed-sql">Distributed SQL</h3><p>CockroachDB, Google Spanner, YugabyteDB — ACID across distributed nodes using consensus algorithms.</p>
+<p><strong>How Spanner achieves global ACID:</strong></p>
+<ul>
+<li>TrueTime API (GPS + atomic clocks) for globally synchronized timestamps</li>
+<li>Paxos consensus for replication</li>
+<li>Two-phase commit for cross-shard transactions</li>
+</ul>
+<h2 id="base-in-practice">BASE in Practice</h2><h3 id="dynamodb">DynamoDB</h3><ul>
+<li>Eventual consistency by default</li>
+<li>Optional strong consistency reads (at 2x cost)</li>
+<li>Partition-tolerant and highly available</li>
+</ul>
+<h3 id="cassandra">Cassandra</h3><ul>
+<li>Tunable consistency per query</li>
+<li><code>QUORUM</code> reads/writes for stronger guarantees</li>
+<li><code>ONE</code> for maximum performance</li>
+</ul>
+<h3 id="mongodb">MongoDB</h3><ul>
+<li>Default: eventual consistency with single-document ACID</li>
+<li>Multi-document transactions available (with performance cost)</li>
+</ul>
+<h2 id="when-to-choose">When to Choose</h2><h3 id="use-acid-when">Use ACID When:</h3><ul>
+<li><strong>Money is involved</strong> — bank transfers, payments, billing</li>
+<li><strong>Inventory management</strong> — can&#39;t oversell products</li>
+<li><strong>User authentication</strong> — security-critical data</li>
+<li><strong>Legal compliance</strong> — audit trails must be accurate</li>
+</ul>
+<h3 id="use-base-when">Use BASE When:</h3><ul>
+<li><strong>Social features</strong> — likes, comments, feeds (a stale like count is OK)</li>
+<li><strong>Analytics</strong> — approximate counts are acceptable</li>
+<li><strong>Content delivery</strong> — serving content with slight staleness</li>
+<li><strong>IoT data</strong> — high-volume sensor data where individual accuracy matters less</li>
+</ul>
+<h2 id="the-spectrum">The Spectrum</h2><p>Modern systems often use <strong>both models</strong> in different parts of the same application:</p>
+<pre><code class="language-text">Payment Service → PostgreSQL (ACID)
+Product Catalog → DynamoDB (BASE)
+User Sessions  → Redis (BASE)
+Order History  → Cassandra (BASE)
+Inventory      → PostgreSQL (ACID)</code></pre><p>Choose the right model for each subsystem based on its requirements.</p>
+
+        </div>
+    </article>
+
+    <!-- Table of Contents -->
+    <aside class="toc">
+        <div class="toc-header">IN THIS ARTICLE</div>
+        <div class="toc-links">
+            <a href="#two-models-for-data-guarantees" class="toc-link ">Two Models for Data Guarantees</a>
+<a href="#acid" class="toc-link ">ACID</a>
+<a href="#atomicity" class="toc-link toc-sub">Atomicity</a>
+<a href="#consistency" class="toc-link toc-sub">Consistency</a>
+<a href="#isolation" class="toc-link toc-sub">Isolation</a>
+<a href="#durability" class="toc-link toc-sub">Durability</a>
+<a href="#base" class="toc-link ">BASE</a>
+<a href="#basically-available" class="toc-link toc-sub">Basically Available</a>
+<a href="#soft-state" class="toc-link toc-sub">Soft State</a>
+<a href="#eventually-consistent" class="toc-link toc-sub">Eventually Consistent</a>
+<a href="#comparison" class="toc-link ">Comparison</a>
+<a href="#acid-in-practice" class="toc-link ">ACID in Practice</a>
+<a href="#traditional-rdbms" class="toc-link toc-sub">Traditional RDBMS</a>
+<a href="#distributed-sql" class="toc-link toc-sub">Distributed SQL</a>
+<a href="#base-in-practice" class="toc-link ">BASE in Practice</a>
+<a href="#dynamodb" class="toc-link toc-sub">DynamoDB</a>
+<a href="#cassandra" class="toc-link toc-sub">Cassandra</a>
+<a href="#mongodb" class="toc-link toc-sub">MongoDB</a>
+<a href="#when-to-choose" class="toc-link ">When to Choose</a>
+<a href="#use-acid-when" class="toc-link toc-sub">Use ACID When:</a>
+<a href="#use-base-when" class="toc-link toc-sub">Use BASE When:</a>
+<a href="#the-spectrum" class="toc-link ">The Spectrum</a>
+        </div>
+    </aside>
+</div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="footer-inner">
+      <p>&copy; 2026 Talha Khalil. All rights reserved.</p>
+      <div class="footer-links">
+        <a href="https://github.com/talhakhalil0703" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://talhakhalil.ca" target="_blank" rel="noopener">Website</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="/assets/js/main.js"></script>
+</body>
+
+</html>

@@ -100,3 +100,89 @@ document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
         }
     });
 });
+
+// ── Blog Index: Sort & Filter ──────────────────────────────
+(function () {
+    const topicView = document.querySelector('.blog-topic-view');
+    const dateView = document.querySelector('.blog-date-view');
+    const sortToggle = document.querySelector('.blog-sort-toggle');
+    if (!topicView || !dateView) return;
+
+    let currentView = 'topic';
+    let currentTag = 'all';
+    let currentSort = 'newest';
+
+    // View toggle (By Topic / By Date)
+    document.querySelectorAll('.blog-view-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.blog-view-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentView = btn.getAttribute('data-view');
+
+            if (currentView === 'topic') {
+                topicView.style.display = '';
+                dateView.style.display = 'none';
+                if (sortToggle) sortToggle.style.display = 'none';
+            } else {
+                topicView.style.display = 'none';
+                dateView.style.display = '';
+                if (sortToggle) sortToggle.style.display = '';
+            }
+            applyFilters();
+        });
+    });
+
+    // Sort toggle (Newest / Oldest)
+    document.querySelectorAll('.blog-sort-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.blog-sort-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSort = btn.getAttribute('data-sort');
+            sortDateView();
+        });
+    });
+
+    // Tag filter
+    document.querySelectorAll('.blog-tag-btn').forEach((btn) => {
+        btn.addEventListener('click', () => {
+            document.querySelectorAll('.blog-tag-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentTag = btn.getAttribute('data-tag');
+            applyFilters();
+        });
+    });
+
+    function applyFilters() {
+        const activeView = currentView === 'topic' ? topicView : dateView;
+        const cards = activeView.querySelectorAll('.pillar-topic-card');
+
+        cards.forEach((card) => {
+            const cardTags = (card.getAttribute('data-tags') || '').split(',');
+            if (currentTag === 'all' || cardTags.includes(currentTag)) {
+                card.style.display = '';
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        // In topic view, hide sections that have no visible cards
+        if (currentView === 'topic') {
+            topicView.querySelectorAll('.pillar-section').forEach((section) => {
+                const visibleCards = section.querySelectorAll('.pillar-topic-card:not([style*="display: none"])');
+                section.style.display = visibleCards.length > 0 ? '' : 'none';
+            });
+        }
+    }
+
+    function sortDateView() {
+        const grid = dateView.querySelector('.pillar-topics-grid');
+        if (!grid) return;
+        const cards = Array.from(grid.querySelectorAll('.pillar-topic-card'));
+        cards.sort((a, b) => {
+            const dateA = new Date(a.getAttribute('data-date') || 0).getTime();
+            const dateB = new Date(b.getAttribute('data-date') || 0).getTime();
+            return currentSort === 'newest' ? dateB - dateA : dateA - dateB;
+        });
+        cards.forEach(card => grid.appendChild(card));
+    }
+})();

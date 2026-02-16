@@ -4,8 +4,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>First Test — Blog — Talha Khalil</title>
-  <meta name="description" content="First Test — Blog — Talha Khalil.">
+  <title>Simple Client-Server Architecture — Blog — Talha Khalil</title>
+  <meta name="description" content="Simple Client-Server Architecture — Blog — Talha Khalil.">
   <meta name="author" content="Talha Khalil">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -58,7 +58,7 @@
     <button class="sidebar-toggle" aria-label="Toggle section">−</button>
   </div>
   <div class="sidebar-section-items">
-    <a href="/blog/first-test.html" class="sidebar-item active">First Test</a>
+    <a href="/blog/first-test.html" class="sidebar-item">First Test</a>
   </div>
 </div>
 <div class="sidebar-section">
@@ -69,7 +69,7 @@
   <div class="sidebar-section-items">
     <a href="/blog/requirements-gathering.html" class="sidebar-item">Requirements Gathering</a>
     <a href="/blog/system-characteristics.html" class="sidebar-item">System Characteristics</a>
-    <a href="/blog/client-server-architecture.html" class="sidebar-item">Simple Client-Server Architecture</a>
+    <a href="/blog/client-server-architecture.html" class="sidebar-item active">Simple Client-Server Architecture</a>
     <a href="/blog/apis.html" class="sidebar-item">APIs</a>
     <a href="/blog/databases.html" class="sidebar-item">Databases</a>
     <a href="/blog/vertical-vs-horizontal-scaling.html" class="sidebar-item">Vertical Scaling versus Horizontal Scaling</a>
@@ -109,24 +109,81 @@
     <span class="breadcrumb-sep">›</span>
     <a href="/blog/">BLOG</a>
     <span class="breadcrumb-sep">›</span>
-    <span>2026</span>
+    <span>FUNDAMENTALS</span>
     <span class="breadcrumb-sep">›</span>
-    <span class="breadcrumb-current">FIRST TEST</span>
+    <span class="breadcrumb-current">SIMPLE CLIENT-SERVER ARCHITECTURE</span>
   </nav>
         <div class="topic-header">
             <span class="topic-pillar-label">BLOG</span>
-            <h1 class="topic-title">First Test</h1>
+            <h1 class="topic-title">Simple Client-Server Architecture</h1>
             <div class="topic-meta">
-                <span>February 14, 2026</span>
+                <span>February 15, 2026</span>
                 <span class="topic-meta-sep">·</span>
-                <span>Edited February 14, 2026</span>
+                <span>Edited February 15, 2026</span>
                 <span class="topic-meta-sep">·</span>
-                <span>1 min read</span>
+                <span>2 min read</span>
             </div>
         </div>
         <div class="topic-body">
-            <h1 id="first-test">First Test</h1><p>Test to see how the blog works, pending topics and content in regards to everything present on this website.</p>
-<h2 id="test">Test</h2><h3 id="test">Test</h3><h4 id="test">Test</h4><h5 id="test">Test</h5><h6 id="test">Test</h6>
+            <h2 id="the-basic-model">The Basic Model</h2><p>Every networked application starts as a <strong>client-server architecture</strong>. A client sends a request, a server processes it and sends a response. This is the simplest distributed system.</p>
+<pre><code class="language-text">┌──────────┐         HTTP          ┌──────────┐
+│  Client  │  ──── Request ────▶  │  Server  │
+│ (Browser)│  ◀── Response ────   │  (API)   │
+└──────────┘                      └──────────┘</code></pre><h2 id="client">Client</h2><p>The client is any device or application that initiates requests:</p>
+<ul>
+<li>Web browsers (Chrome, Firefox)</li>
+<li>Mobile apps (iOS, Android)</li>
+<li>Desktop applications</li>
+<li>IoT devices</li>
+<li>Other servers (server-to-server communication)</li>
+</ul>
+<p>Clients are typically <strong>stateless</strong> — they don&#39;t remember previous interactions unless they store something locally (cookies, localStorage, etc.).</p>
+<h2 id="server">Server</h2><p>The server listens for incoming requests, processes them, and returns responses:</p>
+<ul>
+<li><strong>Web server</strong> — serves HTML, CSS, JS files (Nginx, Apache)</li>
+<li><strong>Application server</strong> — runs business logic (Node.js, Django, Spring)</li>
+<li><strong>Database server</strong> — stores and retrieves data (PostgreSQL, MongoDB)</li>
+</ul>
+<p>In practice, a &quot;server&quot; can be one machine handling all three roles, or separate machines for each.</p>
+<h2 id="the-request-response-cycle">The Request-Response Cycle</h2><ol>
+<li><strong>DNS Resolution</strong> — client resolves <code>example.com</code> to an IP address</li>
+<li><strong>TCP Connection</strong> — client opens a connection to the server (TCP handshake)</li>
+<li><strong>Request</strong> — client sends an HTTP request (method, headers, body)</li>
+<li><strong>Processing</strong> — server routes the request, runs logic, queries a database</li>
+<li><strong>Response</strong> — server sends back status code, headers, and body</li>
+<li><strong>Rendering</strong> — client processes the response (renders HTML, parses JSON)</li>
+</ol>
+<h2 id="communication-protocols">Communication Protocols</h2><h3 id="http-https">HTTP / HTTPS</h3><p>The most common protocol for web communication. Stateless, request-response based.</p>
+<ul>
+<li><code>GET</code> — retrieve data</li>
+<li><code>POST</code> — create data</li>
+<li><code>PUT</code> / <code>PATCH</code> — update data</li>
+<li><code>DELETE</code> — remove data</li>
+</ul>
+<h3 id="websocket">WebSocket</h3><p>Persistent, bidirectional connection. Useful for real-time features:</p>
+<ul>
+<li>Chat applications</li>
+<li>Live dashboards</li>
+<li>Multiplayer games</li>
+</ul>
+<h3 id="grpc">gRPC</h3><p>High-performance RPC framework using Protocol Buffers. Used for server-to-server communication where performance matters.</p>
+<h2 id="scaling-beyond-a-single-server">Scaling Beyond a Single Server</h2><p>A single server can handle a limited number of concurrent connections. When traffic grows, you have options:</p>
+<ol>
+<li><strong>Vertical scaling</strong> — upgrade the server hardware</li>
+<li><strong>Horizontal scaling</strong> — add more servers behind a load balancer</li>
+<li><strong>Caching</strong> — reduce load by serving repeated requests from memory</li>
+<li><strong>CDN</strong> — distribute static content geographically</li>
+</ol>
+<p>The transition from single-server to multi-server architecture is where system design really begins. Every topic in this course builds on this foundation.</p>
+<h2 id="when-to-use-this-pattern">When to Use This Pattern</h2><p>Client-server is appropriate for:</p>
+<ul>
+<li>Web applications</li>
+<li>APIs and microservices</li>
+<li>Mobile backends</li>
+<li>Any request-response workflow</li>
+</ul>
+<p>Alternatives include <strong>peer-to-peer</strong> (BitTorrent, blockchain) and <strong>event-driven architectures</strong> (Kafka, pub/sub).</p>
+
         </div>
     </article>
 
@@ -134,8 +191,16 @@
     <aside class="toc">
         <div class="toc-header">IN THIS ARTICLE</div>
         <div class="toc-links">
-            <a href="#test" class="toc-link ">Test</a>
-<a href="#test" class="toc-link toc-sub">Test</a>
+            <a href="#the-basic-model" class="toc-link ">The Basic Model</a>
+<a href="#client" class="toc-link ">Client</a>
+<a href="#server" class="toc-link ">Server</a>
+<a href="#the-request-response-cycle" class="toc-link ">The Request-Response Cycle</a>
+<a href="#communication-protocols" class="toc-link ">Communication Protocols</a>
+<a href="#http-https" class="toc-link toc-sub">HTTP / HTTPS</a>
+<a href="#websocket" class="toc-link toc-sub">WebSocket</a>
+<a href="#grpc" class="toc-link toc-sub">gRPC</a>
+<a href="#scaling-beyond-a-single-server" class="toc-link ">Scaling Beyond a Single Server</a>
+<a href="#when-to-use-this-pattern" class="toc-link ">When to Use This Pattern</a>
         </div>
     </aside>
 </div>
