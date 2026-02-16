@@ -452,6 +452,12 @@ async function build() {
     console.log("Copying assets...");
     await copyAssets();
 
+    // Copy CNAME file if it exists (for GitHub Pages custom domain)
+    if (await exists("./CNAME")) {
+        await cp("./CNAME", join(OUTPUT_DIR, "CNAME"));
+        console.log("Copied CNAME file.");
+    }
+
     console.log("Building topic pages...");
     const allBlogPosts = await buildTopicPages();
 
